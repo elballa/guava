@@ -31,4 +31,6 @@ public interface FinalizableReference {
    * new references are created.
    */
   void finalizeReferent();
+  
+  public abstract void test();
 }
