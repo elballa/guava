@@ -103,9 +103,9 @@ public abstract class ForwardingCache<K, V> extends ForwardingObject implements 
     return delegate().asMap();
   }
 
-  @Override
+//  @Override
   public void cleanUp() {
-    delegate().cleanUp();
+//    delegate().cleanUp();
   }
 
   /**

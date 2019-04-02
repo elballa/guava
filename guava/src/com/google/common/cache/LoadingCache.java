@@ -157,4 +157,10 @@ public interface LoadingCache<K, V> extends Cache<K, V>, Function<K, V> {
    */
   @Override
   ConcurrentMap<K, V> asMap();
+
+  /**
+   * Performs any pending maintenance operations needed by the cache. Exactly which activities are
+   * performed -- if any -- is implementation-dependent.
+   */
+  void cleanUp();
 }
