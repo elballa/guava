@@ -130,26 +130,6 @@ public interface LoadingCache<K, V> extends Cache<K, V>, Function<K, V> {
   V apply(K key);
 
   /**
-   * Loads a new value for key {@code key}, possibly asynchronously. While the new value is loading
-   * the previous value (if any) will continue to be returned by {@code get(key)} unless it is
-   * evicted. If the new value is loaded successfully it will replace the previous value in the
-   * cache; if an exception is thrown while refreshing the previous value will remain, <i>and the
-   * exception will be logged (using {@link java.util.logging.Logger}) and swallowed</i>.
-   *
-   * <p>Caches loaded by a {@link CacheLoader} will call {@link CacheLoader#reload} if the cache
-   * currently contains a value for {@code key}, and {@link CacheLoader#load} otherwise. Loading is
-   * asynchronous only if {@link CacheLoader#reload} was overridden with an asynchronous
-   * implementation.
-   *
-   * <p>Returns without doing anything if another thread is currently loading the value for {@code
-   * key}. If the cache loader associated with this cache performs refresh asynchronously then this
-   * method may return before refresh completes.
-   *
-   * @since 11.0
-   */
-  void refresh(K key);
-
-  /**
    * {@inheritDoc}
    *
    * <p><b>Note that although the view <i>is</i> modifiable, no method on the returned map will ever

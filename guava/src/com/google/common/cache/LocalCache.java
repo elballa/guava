@@ -4784,6 +4784,12 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     protected Cache<K, V> delegate() {
       return delegate;
     }
+
+	@Override
+	public void refresh(K key) {
+		// TODO Auto-generated method stub
+		
+	}
   }
 
   /**
@@ -4935,6 +4941,12 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     Object writeReplace() {
       return new ManualSerializationProxy<>(localCache);
     }
+
+	@Override
+	public void refresh(K key) {
+		// TODO Auto-generated method stub
+		
+	}
   }
 
   static class LocalLoadingCache<K, V> extends LocalManualCache<K, V>
