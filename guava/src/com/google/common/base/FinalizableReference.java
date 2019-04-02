@@ -31,4 +31,8 @@ public interface FinalizableReference {
    * new references are created.
    */
   void finalizeReferent();
+  
+  public default void test() {
+	  
+  }
 }
