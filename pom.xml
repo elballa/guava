@@ -11,7 +11,7 @@
   </parent>
   <groupId>com.google.guava</groupId>
   <artifactId>guava-parent</artifactId>
-  <version>24.1.1-jre</version>
+  <version>24.1.2-jre-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Guava Maven Parent</name>
   <url>https://github.com/google/guava</url>
@@ -21,6 +21,10 @@
     <truth.version>0.35</truth.version>
     <animal.sniffer.version>1.14</animal.sniffer.version>
     <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
+    <maven-bnd-plugin.version>4.2.0</maven-bnd-plugin.version>
+    <maven-revapi-plugin.version>0.11.0</maven-revapi-plugin.version>
+    <maven-japicmp-plugin.version>0.13.1</maven-japicmp-plugin.version>
+    <revapi.version>0.19.0</revapi.version>
   </properties>
   <issueManagement>
     <system>GitHub Issues</system>
@@ -148,29 +152,29 @@
             </execution>
           </executions>
         </plugin>
-        <plugin>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${maven-javadoc-plugin.version}</version>
-          <configuration>
-            <quiet>true</quiet>
-            <notimestamp>true</notimestamp>
-            <encoding>UTF-8</encoding>
-            <docencoding>UTF-8</docencoding>
-            <charset>UTF-8</charset>
-            <additionalOptions>
-              <additionalOption>-XDignore.symbol.file</additionalOption>
-              <additionalOption>-Xdoclint:-html</additionalOption>
-            </additionalOptions>
-            <linksource>true</linksource>
-          </configuration>
-          <executions>
-            <execution>
-              <id>attach-docs</id>
-              <phase>post-integration-test</phase>
-              <goals><goal>jar</goal></goals>
-            </execution>
-          </executions>
-        </plugin>
+<!--         <plugin> -->
+<!--           <artifactId>maven-javadoc-plugin</artifactId> -->
+<!--           <version>${maven-javadoc-plugin.version}</version> -->
+<!--           <configuration> -->
+<!--             <quiet>true</quiet> -->
+<!--             <notimestamp>true</notimestamp> -->
+<!--             <encoding>UTF-8</encoding> -->
+<!--             <docencoding>UTF-8</docencoding> -->
+<!--             <charset>UTF-8</charset> -->
+<!--             <additionalOptions> -->
+<!--               <additionalOption>-XDignore.symbol.file</additionalOption> -->
+<!--               <additionalOption>-Xdoclint:-html</additionalOption> -->
+<!--             </additionalOptions> -->
+<!--             <linksource>true</linksource> -->
+<!--           </configuration> -->
+<!--           <executions> -->
+<!--             <execution> -->
+<!--               <id>attach-docs</id> -->
+<!--               <phase>post-integration-test</phase> -->
+<!--               <goals><goal>jar</goal></goals> -->
+<!--             </execution> -->
+<!--           </executions> -->
+<!--         </plugin> -->
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>2.10</version>
@@ -201,6 +205,79 @@
             <!-- Catch dependencies on the default locale by setting it to hi-IN. -->
             <argLine>-Xmx1536M -Duser.language=hi -Duser.country=IN</argLine>
           </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.revapi</groupId>
+            <artifactId>revapi-maven-plugin</artifactId>
+            <version>${maven-revapi-plugin.version}</version>
+            <dependencies>
+                <dependency>
+                    <groupId>org.revapi</groupId>
+                    <artifactId>revapi-java</artifactId>
+                    <version>${revapi.version}</version>
+                </dependency>
+            </dependencies>
+            <configuration>
+                <failOnUnresolvedArtifacts>true</failOnUnresolvedArtifacts>
+                <failOnUnresolvedDependencies>true</failOnUnresolvedDependencies>
+                <alwaysCheckForReleaseVersion>false</alwaysCheckForReleaseVersion>
+                <resolveProvidedDependencies>false</resolveProvidedDependencies>
+                <resolveTransitiveProvidedDependencies>false</resolveTransitiveProvidedDependencies>
+                <analysisConfiguration>
+                    <revapi.ignore id="revapi-ignore">
+                        <item>
+                            <code>java.class.nonPublicPartOfAPI</code>
+                        </item>
+                        <item>
+                            <regex>true</regex>
+                            <code>java.annotation.removed</code>
+                            <new>class com.google.common.util.concurrent.AbstractFuture.*</new>
+                            <annotationType>com.google.j2objc.annotations.ReflectionSupport</annotationType>
+                            <justification>Revapi wrong in detecting this error</justification>
+                        </item>
+                        <item>
+                            <regex>true</regex>
+                            <code>java.annotation.removed</code>
+                            <new>class com.google.common.util.concurrent.AtomicDouble</new>
+                            <annotationType>com.google.j2objc.annotations.ReflectionSupport</annotationType>
+                            <justification>Revapi wrong in detecting this error</justification>
+                        </item>
+                    </revapi.ignore>
+                    <revapi.java id="revapi-java">
+                        <missing-classes>
+                            <behavior>ignore</behavior>
+                        </missing-classes>
+                    </revapi.java>
+                    <revapi.semver.ignore id="revapi-semver-ignore">
+                        <enabled>true</enabled>
+                    </revapi.semver.ignore>
+                </analysisConfiguration>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>bnd-baseline-maven-plugin</artifactId>
+            <version>${maven-bnd-plugin.version}</version>
+            <configuration>
+                <fullReport>true</fullReport>
+                <diffignores>
+                    <diffignore>*</diffignore>
+                </diffignores>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>com.github.siom79.japicmp</groupId>
+            <artifactId>japicmp-maven-plugin</artifactId>
+            <version>${maven-japicmp-plugin.version}</version>
+            <configuration>
+                <parameter>
+                    <htmlTitle>Backward compatibility report</htmlTitle>
+                    <reportOnlyFilename>true</reportOnlyFilename>
+                    <breakBuildOnModifications>false</breakBuildOnModifications>
+                    <breakBuildBasedOnSemanticVersioning>true</breakBuildBasedOnSemanticVersioning>
+                    <onlyModified>true</onlyModified>
+                </parameter>
+            </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -299,4 +376,63 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+  <profiles>
+        <profile>
+            <id>revapi</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.revapi</groupId>
+                        <artifactId>revapi-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>backward-compatibility-check-revapi</id>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>bnd-baseline</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>biz.aQute.bnd</groupId>
+                        <artifactId>bnd-baseline-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>backward-compatibility-check-bnd-baseline</id>
+                                <goals>
+                                    <goal>baseline</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>japicmp</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.siom79.japicmp</groupId>
+                        <artifactId>japicmp-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>cmp</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+  </profiles>
 </project>
