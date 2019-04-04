@@ -42,22 +42,22 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 @GwtCompatible
 @FunctionalInterface
 public interface Function<F, T> extends java.util.function.Function<F, T> {
+
+	  /**
+	   * <i>May</i> return {@code true} if {@code object} is a {@code Function} that behaves identically
+	   * to this function.
+	   *
+	   * <p><b>Warning: do not depend</b> on the behavior of this method.
+	   *
+	   * <p>Historically, {@code Function} instances in this library have implemented this method to
+	   * recognize certain cases where distinct {@code Function} instances would in fact behave
+	   * identically. However, as code migrates to {@code java.util.function}, that behavior will
+	   * disappear. It is best not to depend on it.
+	   */
+	  @Override
+	  boolean equals(@NullableDecl Object object);
   @Override
   @NullableDecl
   @CanIgnoreReturnValue // TODO(kevinb): remove this
   T apply(@NullableDecl F input);
-
-  /**
-   * <i>May</i> return {@code true} if {@code object} is a {@code Function} that behaves identically
-   * to this function.
-   *
-   * <p><b>Warning: do not depend</b> on the behavior of this method.
-   *
-   * <p>Historically, {@code Function} instances in this library have implemented this method to
-   * recognize certain cases where distinct {@code Function} instances would in fact behave
-   * identically. However, as code migrates to {@code java.util.function}, that behavior will
-   * disappear. It is best not to depend on it.
-   */
-  @Override
-  boolean equals(@NullableDecl Object object);
 }

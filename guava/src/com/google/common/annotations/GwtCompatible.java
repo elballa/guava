@@ -63,6 +63,15 @@ import java.lang.annotation.Target;
 @Documented
 @GwtCompatible
 public @interface GwtCompatible {
+  /**
+   * When {@code true}, the annotated type is emulated in GWT. The emulated source (also known as
+   * super-source) is different from the implementation used by the JVM.
+   *
+   * @see <a href=
+   *     "http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+   *     Documentation about GWT emulated source</a>
+   */
+  boolean emulated() default false;
 
   /**
    * When {@code true}, the annotated type or the type of the method return value is GWT
@@ -74,13 +83,4 @@ public @interface GwtCompatible {
    */
   boolean serializable() default false;
 
-  /**
-   * When {@code true}, the annotated type is emulated in GWT. The emulated source (also known as
-   * super-source) is different from the implementation used by the JVM.
-   *
-   * @see <a href=
-   *     "http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-   *     Documentation about GWT emulated source</a>
-   */
-  boolean emulated() default false;
 }
