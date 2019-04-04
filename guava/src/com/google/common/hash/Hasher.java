@@ -59,7 +59,7 @@ public interface Hasher extends PrimitiveSink {
   Hasher putByte(byte b);
 
   @Override
-  Hasher putBytes(byte[] bytes);
+  Hasher putBytes(byte... bytes);
 
   @Override
   Hasher putBytes(byte[] bytes, int off, int len);
