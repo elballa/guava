@@ -27,17 +27,18 @@ import java.util.concurrent.ConcurrentMap;
  */
 @GwtCompatible
 public enum RemovalCause {
-  /**
-   * The entry was manually removed by the user. This can result from the user invoking {@link
-   * Cache#invalidate}, {@link Cache#invalidateAll(Iterable)}, {@link Cache#invalidateAll()}, {@link
-   * Map#remove}, {@link ConcurrentMap#remove}, or {@link Iterator#remove}.
-   */
-  EXPLICIT {
-    @Override
-    boolean wasEvicted() {
-      return false;
-    }
-  },
+
+	  /**
+	   * The entry was removed automatically because its key or value was garbage-collected. This can
+	   * occur when using {@link CacheBuilder#weakKeys}, {@link CacheBuilder#weakValues}, or {@link
+	   * CacheBuilder#softValues}.
+	   */
+	  COLLECTED {
+	    @Override
+	    boolean wasEvicted() {
+	      return true;
+	    }
+	  },
 
   /**
    * The entry itself was not actually removed, but its value was replaced by the user. This can
@@ -51,16 +52,15 @@ public enum RemovalCause {
       return false;
     }
   },
-
   /**
-   * The entry was removed automatically because its key or value was garbage-collected. This can
-   * occur when using {@link CacheBuilder#weakKeys}, {@link CacheBuilder#weakValues}, or {@link
-   * CacheBuilder#softValues}.
+   * The entry was manually removed by the user. This can result from the user invoking {@link
+   * Cache#invalidate}, {@link Cache#invalidateAll(Iterable)}, {@link Cache#invalidateAll()}, {@link
+   * Map#remove}, {@link ConcurrentMap#remove}, or {@link Iterator#remove}.
    */
-  COLLECTED {
+  EXPLICIT {
     @Override
     boolean wasEvicted() {
-      return true;
+      return false;
     }
   },
 
