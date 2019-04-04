@@ -37,7 +37,7 @@ import com.google.common.annotations.GwtCompatible;
  * @since 7.0
  */
 @GwtCompatible
-public final class Ascii {
+public class Ascii {
 
   private Ascii() {}
 
