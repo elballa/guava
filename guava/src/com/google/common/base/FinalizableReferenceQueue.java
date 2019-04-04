@@ -134,9 +134,9 @@ public class FinalizableReferenceQueue implements Closeable {
   private static final Method startFinalizer;
 
   static {
-    Class<?> finalizer =
-        loadFinalizer(new SystemLoader(), new DecoupledLoader(), new DirectLoader());
-    startFinalizer = getStartFinalizer(finalizer);
+//    Class<?> finalizer =
+//        loadFinalizer(new SystemLoader(), new DecoupledLoader(), new DirectLoader());
+    startFinalizer = null;
   }
 
   /** The actual reference queue that our background thread will poll. */
@@ -198,22 +198,6 @@ public class FinalizableReferenceQueue implements Closeable {
         logger.log(Level.SEVERE, "Error cleaning up after reference.", t);
       }
     }
-  }
-
-  /**
-   * Iterates through the given loaders until it finds one that can load Finalizer.
-   *
-   * @return Finalizer.class
-   */
-  private static Class<?> loadFinalizer(FinalizerLoader... loaders) {
-    for (FinalizerLoader loader : loaders) {
-      Class<?> finalizer = loader.loadFinalizer();
-      if (finalizer != null) {
-        return finalizer;
-      }
-    }
-
-    throw new AssertionError();
   }
 
   /** Loads Finalizer.class. */
