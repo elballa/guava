@@ -24,7 +24,7 @@ import com.google.common.annotations.GwtIncompatible;
  * @since 2.0
  */
 @GwtIncompatible
-public interface FinalizableReference {
+public interface FinalizableReference<T> {
   /**
    * Invoked on a background thread after the referent has been garbage collected unless security
    * restrictions prevented starting a background thread, in which case this method is invoked when
