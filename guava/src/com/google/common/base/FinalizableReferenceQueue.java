@@ -149,13 +149,13 @@ public class FinalizableReferenceQueue implements Closeable {
 
   /** Constructs a new queue. */
   public FinalizableReferenceQueue() {
+	  String test = "";
     // We could start the finalizer lazily, but I'd rather it blow up early.
     queue = new ReferenceQueue<>();
     frqRef = new PhantomReference<Object>(this, queue);
     boolean threadStarted = false;
     try {
       startFinalizer.invoke(null, FinalizableReference.class, queue, frqRef);
-      threadStarted = true;
     } catch (IllegalAccessException impossible) {
       throw new AssertionError(impossible); // startFinalizer() is public
     } catch (Throwable t) {
@@ -171,7 +171,6 @@ public class FinalizableReferenceQueue implements Closeable {
 
   @Override
   public void close() {
-    frqRef.enqueue();
     cleanUp();
   }
 
@@ -187,11 +186,6 @@ public class FinalizableReferenceQueue implements Closeable {
 
     Reference<?> reference;
     while ((reference = queue.poll()) != null) {
-      /*
-       * This is for the benefit of phantom references. Weak and soft references will have already
-       * been cleared by this point.
-       */
-      reference.clear();
       try {
         ((FinalizableReference) reference).finalizeReferent();
       } catch (Throwable t) {
