@@ -51,14 +51,4 @@ public class AsyncEventBus extends EventBus {
   public AsyncEventBus(Executor executor, SubscriberExceptionHandler subscriberExceptionHandler) {
     super("default", executor, Dispatcher.legacyAsync(), subscriberExceptionHandler);
   }
-
-  /**
-   * Creates a new AsyncEventBus that will use {@code executor} to dispatch events.
-   *
-   * @param executor Executor to use to dispatch events. It is the caller's responsibility to shut
-   *     down the executor after the last event has been posted to this event bus.
-   */
-  public AsyncEventBus(Executor executor) {
-    super("default", executor, Dispatcher.legacyAsync(), LoggingHandler.INSTANCE);
-  }
 }
