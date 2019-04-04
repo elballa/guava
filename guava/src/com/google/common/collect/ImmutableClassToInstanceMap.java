@@ -170,7 +170,7 @@ public final class ImmutableClassToInstanceMap<B> extends ForwardingMap<Class<? 
   @Override
   @SuppressWarnings("unchecked") // value could not get in if not a T
   @NullableDecl
-  public <T extends B> T getInstance(Class<T> type) {
+  public <T> T getInstance(Class<T> type) {
     return (T) delegate.get(checkNotNull(type));
   }
 
