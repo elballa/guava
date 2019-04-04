@@ -45,7 +45,7 @@
  *       registerCustomerChangeEventListener} method. These methods are rarely defined in common
  *       interfaces, so in addition to knowing every possible producer, you must also know its type.
  *   <li><strong>...with EventBus:</strong> pass your object to the {@link
- *       com.google.common.eventbus.EventBus#register(Object)} method on an EventBus. You'll need to
+ *       com.google.common.eventbus.EventBus#register2(Object)} method on an EventBus. You'll need to
  *       make sure that your object shares an EventBus instance with the event producers.
  * </ul>
  *

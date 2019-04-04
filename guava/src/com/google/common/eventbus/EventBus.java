@@ -43,7 +43,7 @@ import java.util.logging.Logger;
  *   <li>Expose a public method, known as the <i>event subscriber</i>, which accepts a single
  *       argument of the type of event desired;
  *   <li>Mark it with a {@link Subscribe} annotation;
- *   <li>Pass itself to an EventBus instance's {@link #register(Object)} method.
+ *   <li>Pass itself to an EventBus instance's {@link #register2(Object)} method.
  * </ol>
  *
  * <h2>Posting Events</h2>
@@ -182,7 +182,7 @@ public class EventBus {
    *
    * @param object object whose subscriber methods should be registered.
    */
-  public void register(Object object) {
+  public void register2(Object object) {
     subscribers.register(object);
   }
 
