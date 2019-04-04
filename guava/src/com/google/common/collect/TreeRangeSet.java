@@ -41,19 +41,19 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  */
 @Beta
 @GwtIncompatible // uses NavigableMap
-public class TreeRangeSet<C extends Comparable<?>> extends AbstractRangeSet<C>
+public class TreeRangeSet<C extends Comparable<?>, X> extends AbstractRangeSet<C>
     implements Serializable {
 
   @VisibleForTesting final NavigableMap<Cut<C>, Range<C>> rangesByLowerBound;
 
   /** Creates an empty {@code TreeRangeSet} instance. */
-  public static <C extends Comparable<?>> TreeRangeSet<C> create() {
-    return new TreeRangeSet<C>(new TreeMap<Cut<C>, Range<C>>());
+  public static <C extends Comparable<?>, X> TreeRangeSet<C, X> create() {
+    return new TreeRangeSet<C, X>(new TreeMap<Cut<C>, Range<C>>());
   }
 
   /** Returns a {@code TreeRangeSet} initialized with the ranges in the specified range set. */
-  public static <C extends Comparable<?>> TreeRangeSet<C> create(RangeSet<C> rangeSet) {
-    TreeRangeSet<C> result = create();
+  public static <C extends Comparable<?>, X> TreeRangeSet<C, X> create(RangeSet<C> rangeSet) {
+    TreeRangeSet<C, X> result = create();
     result.addAll(rangeSet);
     return result;
   }
@@ -67,8 +67,8 @@ public class TreeRangeSet<C extends Comparable<?>> extends AbstractRangeSet<C>
    *
    * @since 21.0
    */
-  public static <C extends Comparable<?>> TreeRangeSet<C> create(Iterable<Range<C>> ranges) {
-    TreeRangeSet<C> result = create();
+  public static <C extends Comparable<?>, X> TreeRangeSet<C, X> create(Iterable<Range<C>> ranges) {
+    TreeRangeSet<C, X> result = create();
     result.addAll(ranges);
     return result;
   }
@@ -649,7 +649,7 @@ public class TreeRangeSet<C extends Comparable<?>> extends AbstractRangeSet<C>
     }
   }
 
-  private final class Complement extends TreeRangeSet<C> {
+  private final class Complement extends TreeRangeSet<C, X> {
     Complement() {
       super(new ComplementRangesByLowerBound<C>(TreeRangeSet.this.rangesByLowerBound));
     }
@@ -861,7 +861,7 @@ public class TreeRangeSet<C extends Comparable<?>> extends AbstractRangeSet<C>
     return view.equals(Range.<C>all()) ? this : new SubRangeSet(view);
   }
 
-  private final class SubRangeSet extends TreeRangeSet<C> {
+  private final class SubRangeSet extends TreeRangeSet<C, X> {
     private final Range<C> restriction;
 
     SubRangeSet(Range<C> restriction) {
