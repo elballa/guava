@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
  * A reference queue with an associated background thread that dequeues references and invokes
- * {@link FinalizableReference#finalizeReferent()} on them.
+ * {@link FinalizableReference#finalizeReferent2()} on them.
  *
  * <p>Keep a strong reference to this object until all of the associated referents have been
  * finalized. If this object is garbage collected earlier, the backing thread will not invoke {@code
@@ -177,7 +177,7 @@ public class FinalizableReferenceQueue implements Closeable {
 
   /**
    * Repeatedly dequeues references from the queue and invokes {@link
-   * FinalizableReference#finalizeReferent()} on them until the queue is empty. This method is a
+   * FinalizableReference#finalizeReferent2()} on them until the queue is empty. This method is a
    * no-op if the background thread was created successfully.
    */
   void cleanUp() {
@@ -193,7 +193,7 @@ public class FinalizableReferenceQueue implements Closeable {
        */
       reference.clear();
       try {
-        ((FinalizableReference) reference).finalizeReferent();
+        ((FinalizableReference) reference).finalizeReferent2();
       } catch (Throwable t) {
         logger.log(Level.SEVERE, "Error cleaning up after reference.", t);
       }
