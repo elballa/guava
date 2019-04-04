@@ -40,7 +40,7 @@ import java.util.concurrent.TimeoutException;
 @Beta
 @Deprecated
 @GwtIncompatible
-public abstract class AbstractCheckedFuture<V, X extends Exception>
+public abstract class AbstractCheckedFuture<V, X extends RuntimeException>
     extends ForwardingListenableFuture.SimpleForwardingListenableFuture<V>
     implements CheckedFuture<V, X> {
   /** Constructs an {@code AbstractCheckedFuture} that wraps a delegate. */

@@ -149,7 +149,7 @@ public final class Futures extends GwtFuturesCatchingSpecialization {
   // TODO(b/72241575): Remove by 2018-04
   @Deprecated
   @GwtIncompatible // TODO
-  public static <V, X extends Exception> CheckedFuture<V, X> makeChecked(
+  public static <V, X extends RuntimeException> CheckedFuture<V, X> makeChecked(
       ListenableFuture<V> future, Function<? super Exception, X> mapper) {
     return new MappingCheckedFuture<>(checkNotNull(future), mapper);
   }
@@ -188,7 +188,7 @@ public final class Futures extends GwtFuturesCatchingSpecialization {
   // TODO(b/72241893): Remove by 2018-04
   @Deprecated
   @GwtIncompatible // TODO
-  public static <V, X extends Exception> CheckedFuture<V, X> immediateCheckedFuture(
+  public static <V, X extends RuntimeException> CheckedFuture<V, X> immediateCheckedFuture(
       @NullableDecl V value) {
     return new ImmediateSuccessfulCheckedFuture<>(value);
   }
@@ -235,7 +235,7 @@ public final class Futures extends GwtFuturesCatchingSpecialization {
   // TODO(b/72241500): Remove by 2018-04
   @Deprecated
   @GwtIncompatible // TODO
-  public static <V, X extends Exception> CheckedFuture<V, X> immediateFailedCheckedFuture(
+  public static <V, X extends RuntimeException> CheckedFuture<V, X> immediateFailedCheckedFuture(
       X exception) {
     checkNotNull(exception);
     return new ImmediateFailedCheckedFuture<>(exception);
@@ -1562,7 +1562,7 @@ public final class Futures extends GwtFuturesCatchingSpecialization {
    * A checked future that uses a function to map from exceptions to the appropriate checked type.
    */
   @GwtIncompatible // TODO
-  private static class MappingCheckedFuture<V, X extends Exception>
+  private static class MappingCheckedFuture<V, X extends RuntimeException>
       extends AbstractCheckedFuture<V, X> {
 
     final Function<? super Exception, X> mapper;

@@ -93,7 +93,7 @@ abstract class ImmediateFuture<V> extends FluentFuture<V> {
   }
 
   @GwtIncompatible // TODO
-  static class ImmediateSuccessfulCheckedFuture<V, X extends Exception> extends ImmediateFuture<V>
+  static class ImmediateSuccessfulCheckedFuture<V, X extends RuntimeException> extends ImmediateFuture<V>
       implements CheckedFuture<V, X> {
     @NullableDecl private final V value;
 
@@ -137,7 +137,7 @@ abstract class ImmediateFuture<V> extends FluentFuture<V> {
   }
 
   @GwtIncompatible // TODO
-  static class ImmediateFailedCheckedFuture<V, X extends Exception> extends ImmediateFuture<V>
+  static class ImmediateFailedCheckedFuture<V, X extends RuntimeException> extends ImmediateFuture<V>
       implements CheckedFuture<V, X> {
     private final X thrown;
 

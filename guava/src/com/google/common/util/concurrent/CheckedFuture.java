@@ -64,7 +64,7 @@ import java.util.concurrent.TimeoutException;
 @CanIgnoreReturnValue
 @Deprecated
 @GwtCompatible
-public interface CheckedFuture<V, X extends Exception> extends ListenableFuture<V> {
+public interface CheckedFuture<V, X extends RuntimeException> extends ListenableFuture<V> {
 
   /**
    * Exception checking version of {@link Future#get()} that will translate {@link
