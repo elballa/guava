@@ -69,4 +69,8 @@ public class DeadEvent {
   public String toString() {
     return MoreObjects.toStringHelper(this).add("source", source).add("event", event).toString();
   }
+  
+  public void test() {
+	  
+  }
 }
