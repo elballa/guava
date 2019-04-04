@@ -24,7 +24,7 @@ import com.google.common.annotations.GwtCompatible;
  */
 @GwtCompatible
 @FunctionalInterface
-public interface Weigher<K, V> {
+public interface Weigher<V, K> {
 
   /**
    * Returns the weight of a cache entry. There is no unit for entry weights; rather they are simply
