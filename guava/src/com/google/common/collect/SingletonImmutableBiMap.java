@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Jesse Wilson
  * @author Kevin Bourrillion
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 @SuppressWarnings("serial") // uses writeReplace(), not default serialization
 final class SingletonImmutableBiMap<K, V> extends ImmutableBiMap<K, V> {
 

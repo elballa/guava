@@ -29,7 +29,7 @@ import java.util.Map;
  *
  * <p>TODO(cpovirk): Consider applying this subclass approach to our other types.
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class ArrayListMultimapGwtSerializationDependencies<K, V>
     extends AbstractListMultimap<K, V> {
   ArrayListMultimapGwtSerializationDependencies(Map<K, Collection<V>> map) {

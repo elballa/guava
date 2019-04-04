@@ -30,7 +30,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  *
  * @author Gregory Kick
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 @SuppressWarnings("unchecked") // allow ungenerified Comparable types
 final class RegularContiguousSet<C extends Comparable> extends ContiguousSet<C> {
   private final Range<C> range;

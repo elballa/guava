@@ -26,7 +26,7 @@ import java.util.function.Consumer;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 @SuppressWarnings("serial") // uses writeReplace, not default serialization
 class RegularImmutableAsList<E> extends ImmutableAsList<E> {
   private final ImmutableCollection<E> delegate;

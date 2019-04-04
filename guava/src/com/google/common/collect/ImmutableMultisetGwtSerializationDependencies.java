@@ -36,5 +36,5 @@ import com.google.common.annotations.GwtCompatible;
  * anyway, since it doesn't require us to declare dummy methods (though occasionally constructors)
  * and make types non-final.
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class ImmutableMultisetGwtSerializationDependencies<E> extends ImmutableCollection<E> {}

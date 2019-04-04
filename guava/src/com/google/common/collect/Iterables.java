@@ -63,7 +63,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class Iterables {
   private Iterables() {}
 

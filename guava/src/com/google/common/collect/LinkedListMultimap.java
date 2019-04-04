@@ -96,7 +96,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Mike Bostock
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 public class LinkedListMultimap<K, V> extends AbstractMultimap<K, V>
     implements ListMultimap<K, V>, Serializable {
   /*

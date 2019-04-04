@@ -105,7 +105,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Marcin Mikosik
  * @since 12.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public abstract class FluentIterable<E> implements Iterable<E> {
   // We store 'iterable' and use it instead of 'this' to allow Iterables to perform instanceof
   // checks on the _original_ iterable when FluentIterable.from is used.

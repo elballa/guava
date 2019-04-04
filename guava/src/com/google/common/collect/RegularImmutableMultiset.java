@@ -32,7 +32,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Jared Levy
  * @author Louis Wasserman
  */
-@GwtCompatible(emulated = true, serializable = true)
+@GwtCompatible(serializable = true)
 @SuppressWarnings("serial") // uses writeReplace(), not default serialization
 class RegularImmutableMultiset<E> extends ImmutableMultiset<E> {
   static final ImmutableMultiset<Object> EMPTY = create(ImmutableList.<Entry<Object>>of());

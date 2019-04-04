@@ -63,7 +63,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Mike Bostock
  * @author Jared Levy
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 final class Synchronized {
   private Synchronized() {}
 

@@ -68,7 +68,7 @@ import java.util.concurrent.TimeoutException;
  */
 @Beta
 @DoNotMock("Use FluentFuture.from(Futures.immediate*Future) or SettableFuture")
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public abstract class FluentFuture<V> extends GwtFluentFutureCatchingSpecialization<V> {
   FluentFuture() {}
 

@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Jesse Wilson
  * @author Kevin Bourrillion
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class ImmutableMapEntrySet<K, V> extends ImmutableSet<Entry<K, V>> {
   static final class RegularEntrySet<K, V> extends ImmutableMapEntrySet<K, V> {
     @Weak private final transient ImmutableMap<K, V> map;

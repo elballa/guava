@@ -96,7 +96,7 @@ import java.util.regex.Pattern;
  * @author Louis Wasserman
  * @since 1.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class Splitter {
   private final CharMatcher trimmer;
   private final boolean omitEmptyStrings;

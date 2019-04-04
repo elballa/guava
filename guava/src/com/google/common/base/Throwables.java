@@ -44,7 +44,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Ben Yu
  * @since 1.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class Throwables {
   private Throwables() {}
 

@@ -77,7 +77,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Louis Wasserman
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 public final class LinkedHashMultimap<K, V>
     extends LinkedHashMultimapGwtSerializationDependencies<K, V> {
 

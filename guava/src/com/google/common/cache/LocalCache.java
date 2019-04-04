@@ -98,7 +98,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Bob Lee ({@code com.google.common.collect.MapMaker})
  * @author Doug Lea ({@code ConcurrentHashMap})
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> {
 
   /*

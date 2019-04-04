@@ -30,7 +30,7 @@ import java.nio.charset.Charset;
  * @author Mike Bostock
  * @since 1.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class Charsets {
   private Charsets() {}
 

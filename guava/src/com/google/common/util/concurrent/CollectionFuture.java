@@ -27,7 +27,7 @@ import java.util.List;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /** Aggregate future that collects (stores) results of each future. */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class CollectionFuture<V, C> extends AggregateFuture<V, C> {
 
   abstract class CollectionFutureRunningState extends RunningState {

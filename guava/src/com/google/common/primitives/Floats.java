@@ -45,7 +45,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Kevin Bourrillion
  * @since 1.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class Floats {
   private Floats() {}
 

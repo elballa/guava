@@ -73,14 +73,4 @@ public @interface GwtCompatible {
    *     Documentation about GWT serialization</a>
    */
   boolean serializable() default false;
-
-  /**
-   * When {@code true}, the annotated type is emulated in GWT. The emulated source (also known as
-   * super-source) is different from the implementation used by the JVM.
-   *
-   * @see <a href=
-   *     "http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-   *     Documentation about GWT emulated source</a>
-   */
-  boolean emulated() default false;
 }

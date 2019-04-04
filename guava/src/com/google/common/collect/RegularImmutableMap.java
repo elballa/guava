@@ -38,7 +38,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Kevin Bourrillion
  * @author Gregory Kick
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
   @SuppressWarnings("unchecked")
   static final ImmutableMap<Object, Object> EMPTY =
@@ -208,7 +208,7 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
     return new KeySet<>(this);
   }
 
-  @GwtCompatible(emulated = true)
+  @GwtCompatible()
   private static final class KeySet<K, V> extends IndexedImmutableSet<K> {
     @Weak private final RegularImmutableMap<K, V> map;
 
@@ -263,7 +263,7 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
     return new Values<>(this);
   }
 
-  @GwtCompatible(emulated = true)
+  @GwtCompatible()
   private static final class Values<K, V> extends ImmutableList<V> {
     @Weak final RegularImmutableMap<K, V> map;
 

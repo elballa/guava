@@ -33,7 +33,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Steve McKay
  * @since 9.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class Enums {
 
   private Enums() {}

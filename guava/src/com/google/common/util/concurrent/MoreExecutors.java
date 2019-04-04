@@ -60,7 +60,7 @@ import java.util.concurrent.TimeoutException;
  * @author Justin Mahoney
  * @since 3.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class MoreExecutors {
   private MoreExecutors() {}
 

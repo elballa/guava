@@ -26,7 +26,7 @@ import java.util.Set;
  *
  * @author Hayward Chan
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 final class Platform {
   /** Returns the platform preferred implementation of a map based on a hash table. */
   static <K, V> Map<K, V> newHashMapWithExpectedSize(int expectedSize) {

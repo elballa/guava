@@ -47,7 +47,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Kevin Bourrillion
  * @author Mike Bostock
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class AbstractBiMap<K, V> extends ForwardingMap<K, V>
     implements BiMap<K, V>, Serializable {
 

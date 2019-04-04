@@ -40,7 +40,7 @@ import java.util.concurrent.locks.Condition;
  * @since 10.0
  */
 @Beta
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class Uninterruptibles {
 
   // Implementation Note: As of 3-7-11, the logic for each blocking/timeout

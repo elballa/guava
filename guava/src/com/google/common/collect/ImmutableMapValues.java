@@ -33,7 +33,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Jesse Wilson
  * @author Kevin Bourrillion
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 final class ImmutableMapValues<K, V> extends ImmutableCollection<V> {
   @Weak private final ImmutableMap<K, V> map;
 

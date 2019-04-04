@@ -22,7 +22,7 @@ import com.google.common.annotations.GwtCompatible;
  * java.util.concurrent.Executor) Futures.catching} family of methods. Those versions have slightly
  * different signatures.
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class GwtFuturesCatchingSpecialization {
   /*
    * This server copy of the class is empty. The corresponding GWT copy contains alternative

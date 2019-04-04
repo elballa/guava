@@ -28,7 +28,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * Implementation of ImmutableMap backed by a JDK HashMap, which has smartness protecting against
  * hash flooding.
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 final class JdkBackedImmutableMap<K, V> extends ImmutableMap<K, V> {
   /**
    * Creates an {@code ImmutableMap} backed by a JDK HashMap. Used when probable hash flooding is

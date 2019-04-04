@@ -44,7 +44,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  *
  * @author Kevin Bourrillion
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class AbstractMapBasedMultiset<E> extends AbstractMultiset<E> implements Serializable {
   // TODO(lowasser): consider overhauling this back to Map<E, Integer>
   private transient Map<E, Count> backingMap;

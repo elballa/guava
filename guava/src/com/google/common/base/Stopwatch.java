@@ -79,7 +79,7 @@ import java.util.concurrent.TimeUnit;
  * @author Kevin Bourrillion
  * @since 10.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class Stopwatch {
   private final Ticker ticker;
   private boolean isRunning;

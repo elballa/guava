@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 public abstract class ImmutableBiMap<K, V> extends ImmutableBiMapFauxverideShim<K, V>
     implements BiMap<K, V> {
 

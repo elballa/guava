@@ -35,7 +35,7 @@ import java.util.logging.Logger;
  *   <li>Decrements a counter atomically
  * </ul>
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 @ReflectionSupport(value = ReflectionSupport.Level.FULL)
 abstract class AggregateFutureState {
   // Lazily initialized the first time we see an exception; not released until all the input futures

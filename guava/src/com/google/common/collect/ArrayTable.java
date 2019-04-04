@@ -78,7 +78,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @since 10.0
  */
 @Beta
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class ArrayTable<R, C, V> extends AbstractTable<R, C, V> implements Serializable {
 
   /**

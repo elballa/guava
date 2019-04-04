@@ -41,7 +41,7 @@ import java.util.Set;
  * @author Louis Wasserman
  * @since 11.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public interface SortedMultiset<E> extends SortedMultisetBridge<E>, SortedIterable<E> {
   /**
    * Returns the comparator that orders this multiset, or {@link Ordering#natural()} if the natural

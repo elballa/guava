@@ -23,7 +23,7 @@ import com.google.common.annotations.GwtIncompatible;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class IndexedImmutableSet<E> extends ImmutableSet<E> {
   abstract E get(int index);
 

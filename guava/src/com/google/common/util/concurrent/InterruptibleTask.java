@@ -19,7 +19,7 @@ import com.google.j2objc.annotations.ReflectionSupport;
 import java.util.concurrent.atomic.AtomicReference;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 @ReflectionSupport(value = ReflectionSupport.Level.FULL)
 // Some Android 5.0.x Samsung devices have bugs in JDK reflection APIs that cause
 // getDeclaredField to throw a NoSuchFieldException when the field is definitely there.

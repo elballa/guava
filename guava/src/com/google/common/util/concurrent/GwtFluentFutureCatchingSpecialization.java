@@ -21,7 +21,7 @@ import com.google.common.annotations.GwtCompatible;
  * versions of the {@link FluentFuture#catching(Class, com.google.common.base.Function)
  * FluentFuture.catching} family of methods. Those versions have slightly different signatures.
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class GwtFluentFutureCatchingSpecialization<V> implements ListenableFuture<V> {
   /*
    * This server copy of the class is empty. The corresponding GWT copy contains alternative

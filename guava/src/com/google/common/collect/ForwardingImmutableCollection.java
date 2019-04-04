@@ -23,7 +23,7 @@ import com.google.common.annotations.GwtCompatible;
  *
  * @author Hayward Chan
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 class ForwardingImmutableCollection {
   private ForwardingImmutableCollection() {}
 }

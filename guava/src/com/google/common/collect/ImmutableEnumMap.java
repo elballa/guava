@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 final class ImmutableEnumMap<K extends Enum<K>, V> extends IteratorBasedImmutableMap<K, V> {
   static <K extends Enum<K>, V> ImmutableMap<K, V> asImmutable(EnumMap<K, V> map) {

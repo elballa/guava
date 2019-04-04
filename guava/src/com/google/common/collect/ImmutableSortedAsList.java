@@ -26,7 +26,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Jared Levy
  * @author Louis Wasserman
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 @SuppressWarnings("serial")
 final class ImmutableSortedAsList<E> extends RegularImmutableAsList<E>
     implements SortedIterable<E> {

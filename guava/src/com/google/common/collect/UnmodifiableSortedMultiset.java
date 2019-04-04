@@ -29,7 +29,7 @@ import org.checkerframework.checker.nullness.compatqual.MonotonicNonNullDecl;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 final class UnmodifiableSortedMultiset<E> extends UnmodifiableMultiset<E>
     implements SortedMultiset<E> {
   UnmodifiableSortedMultiset(SortedMultiset<E> delegate) {

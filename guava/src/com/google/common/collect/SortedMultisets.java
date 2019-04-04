@@ -35,7 +35,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 final class SortedMultisets {
   private SortedMultisets() {}
 

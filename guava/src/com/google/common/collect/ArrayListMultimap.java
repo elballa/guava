@@ -58,7 +58,7 @@ import java.util.Map;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 public final class ArrayListMultimap<K, V>
     extends ArrayListMultimapGwtSerializationDependencies<K, V> {
   // Default from ArrayList

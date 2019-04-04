@@ -29,7 +29,7 @@ import java.util.Map;
  *
  * <p>TODO(cpovirk): Consider applying this subclass approach to our other types.
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class HashMultimapGwtSerializationDependencies<K, V> extends AbstractSetMultimap<K, V> {
   HashMultimapGwtSerializationDependencies(Map<K, Collection<V>> map) {
     super(map);

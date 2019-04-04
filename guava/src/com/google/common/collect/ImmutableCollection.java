@@ -158,7 +158,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  *
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 @SuppressWarnings("serial") // we're overriding default serialization
 // TODO(kevinb): I think we should push everything down to "BaseImmutableCollection" or something,
 // just to do everything we can to emphasize the "practically an interface" nature of this class.

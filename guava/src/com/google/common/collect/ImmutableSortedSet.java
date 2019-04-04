@@ -59,7 +59,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @since 2.0 (implements {@code NavigableSet} since 12.0)
  */
 // TODO(benyu): benchmark and optimize all creation paths, which are a mess now
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 public abstract class ImmutableSortedSet<E> extends ImmutableSortedSetFauxverideShim<E>
     implements NavigableSet<E>, SortedIterable<E> {

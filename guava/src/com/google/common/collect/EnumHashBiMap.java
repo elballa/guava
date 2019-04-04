@@ -40,7 +40,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Mike Bostock
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class EnumHashBiMap<K extends Enum<K>, V> extends AbstractBiMap<K, V> {
   private transient Class<K> keyType;
 

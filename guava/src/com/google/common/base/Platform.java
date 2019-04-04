@@ -30,7 +30,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  *
  * @author Jesse Wilson
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 final class Platform {
   private static final Logger logger = Logger.getLogger(Platform.class.getName());
   private static final PatternCompiler patternCompiler = loadPatternCompiler();

@@ -26,7 +26,7 @@ import com.google.errorprone.annotations.concurrent.LazyInit;
  * @author Kevin Bourrillion
  * @author Nick Kralevich
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 @SuppressWarnings("serial") // uses writeReplace(), not default serialization
 final class SingletonImmutableSet<E> extends ImmutableSet<E> {
 

@@ -38,7 +38,7 @@ import java.util.LinkedHashMap;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 @SuppressWarnings("serial") // we're overriding default serialization
 public final class LinkedHashMultiset<E> extends AbstractMapBasedMultiset<E> {
 

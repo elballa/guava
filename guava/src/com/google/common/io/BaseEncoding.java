@@ -121,7 +121,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Louis Wasserman
  * @since 14.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public abstract class BaseEncoding {
   // TODO(lowasser): consider making encodeTo(Appendable, byte[], int, int) public.
 

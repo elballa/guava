@@ -32,7 +32,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Kevin Bourrillion
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class ObjectArrays {
 
   private ObjectArrays() {}

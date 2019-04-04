@@ -58,7 +58,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Louis Wasserman
  * @since 2.0 (implements {@code NavigableMap} since 12.0)
  */
-@GwtCompatible(serializable = true, emulated = true)
+@GwtCompatible(serializable = true)
 public final class ImmutableSortedMap<K, V> extends ImmutableSortedMapFauxverideShim<K, V>
     implements NavigableMap<K, V> {
   /**

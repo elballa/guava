@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /** Implementations of {@code Futures.immediate*}. */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class ImmediateFuture<V> extends FluentFuture<V> {
   private static final Logger log = Logger.getLogger(ImmediateFuture.class.getName());
 

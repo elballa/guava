@@ -30,7 +30,7 @@ import org.checkerframework.checker.nullness.compatqual.MonotonicNonNullDecl;
  *
  * @author Louis Wasserman
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 abstract class DescendingMultiset<E> extends ForwardingMultiset<E> implements SortedMultiset<E> {
   abstract SortedMultiset<E> forwardMultiset();
 

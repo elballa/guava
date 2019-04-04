@@ -71,7 +71,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @since 1.0
  */
 @Beta
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class Futures extends GwtFuturesCatchingSpecialization {
 
   // A note on memory visibility.

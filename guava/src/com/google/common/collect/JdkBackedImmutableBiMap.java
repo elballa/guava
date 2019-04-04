@@ -27,7 +27,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * Implementation of ImmutableBiMap backed by a pair of JDK HashMaps, which have smartness
  * protecting against hash flooding.
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 final class JdkBackedImmutableBiMap<K, V> extends ImmutableBiMap<K, V> {
   @VisibleForTesting
   static <K, V> ImmutableBiMap<K, V> create(int n, Entry<K, V>[] entryArray) {

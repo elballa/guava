@@ -55,7 +55,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Mike Bostock
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public final class HashBiMap<K, V> extends IteratorBasedAbstractMap<K, V>
     implements BiMap<K, V>, Serializable {
 

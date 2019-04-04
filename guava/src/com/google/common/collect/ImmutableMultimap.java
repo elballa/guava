@@ -65,7 +65,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @author Jared Levy
  * @since 2.0
  */
-@GwtCompatible(emulated = true)
+@GwtCompatible()
 public abstract class ImmutableMultimap<K, V> extends AbstractMultimap<K, V>
     implements Serializable {
 
