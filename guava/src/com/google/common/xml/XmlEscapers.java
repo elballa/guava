@@ -73,7 +73,7 @@ public class XmlEscapers {
    * validation on its input.
    */
   public static Escaper xmlContentEscaper() {
-    return XML_CONTENT_ESCAPER;
+    return null;
   }
 
   /**
@@ -97,49 +97,6 @@ public class XmlEscapers {
    * validation on its input.
    */
   public static Escaper xmlAttributeEscaper() {
-    return XML_ATTRIBUTE_ESCAPER;
-  }
-
-  private static final Escaper XML_ESCAPER;
-  private static final Escaper XML_CONTENT_ESCAPER;
-  private static final Escaper XML_ATTRIBUTE_ESCAPER;
-
-  static {
-    Escapers.Builder builder = Escapers.builder();
-    // The char values \uFFFE and \uFFFF are explicitly not allowed in XML
-    // (Unicode code points above \uFFFF are represented via surrogate pairs
-    // which means they are treated as pairs of safe characters).
-    builder.setSafeRange(Character.MIN_VALUE, '\uFFFD');
-    // Unsafe characters are replaced with the Unicode replacement character.
-    builder.setUnsafeReplacement("\uFFFD");
-
-    /*
-     * Except for \n, \t, and \r, all ASCII control characters are replaced with the Unicode
-     * replacement character.
-     *
-     * Implementation note: An alternative to the following would be to make a map that simply
-     * replaces the allowed ASCII whitespace characters with themselves and to set the minimum safe
-     * character to 0x20. However this would slow down the escaping of simple strings that contain
-     * \t, \n, or \r.
-     */
-    for (char c = MIN_ASCII_CONTROL_CHAR; c <= MAX_ASCII_CONTROL_CHAR; c++) {
-      if (c != '\t' && c != '\n' && c != '\r') {
-        builder.addEscape(c, "\uFFFD");
-      }
-    }
-
-    // Build the content escaper first and then add quote escaping for the
-    // general escaper.
-    builder.addEscape('&', "&amp;");
-    builder.addEscape('<', "&lt;");
-    builder.addEscape('>', "&gt;");
-    XML_CONTENT_ESCAPER = builder.build();
-    builder.addEscape('\'', "&apos;");
-    builder.addEscape('"', "&quot;");
-    XML_ESCAPER = builder.build();
-    builder.addEscape('\t', "&#x9;");
-    builder.addEscape('\n', "&#xA;");
-    builder.addEscape('\r', "&#xD;");
-    XML_ATTRIBUTE_ESCAPER = builder.build();
+    return null;
   }
 }
