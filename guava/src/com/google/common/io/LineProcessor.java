@@ -39,7 +39,7 @@ public interface LineProcessor<T> {
    * @return true to continue processing, false to stop
    */
   @CanIgnoreReturnValue // some uses know that their processor never returns false
-  boolean processLine(String line) throws IOException;
+  <N> boolean processLine(String line) throws IOException;
 
   /** Return the result of processing all the lines. */
   T getResult();
