@@ -26,6 +26,8 @@ import java.util.concurrent.Executor;
  */
 @Beta
 public class AsyncEventBus extends EventBus {
+	
+	public boolean test;
 
   /**
    * Creates a new AsyncEventBus that will use {@code executor} to dispatch events. Assigns {@code
