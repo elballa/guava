@@ -59,7 +59,7 @@ public final class RemovalNotification<K, V> extends SimpleImmutableEntry<K, V> 
 
   /**
    * Returns {@code true} if there was an automatic removal due to eviction (the cause is neither
-   * {@link RemovalCause#EXPLICIT} nor {@link RemovalCause#REPLACED}).
+   * {@link RemovalCause#EXPLICIT2} nor {@link RemovalCause#REPLACED}).
    */
   public boolean wasEvicted() {
     return cause.wasEvicted();

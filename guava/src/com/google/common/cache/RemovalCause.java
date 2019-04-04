@@ -32,7 +32,7 @@ public enum RemovalCause {
    * Cache#invalidate}, {@link Cache#invalidateAll(Iterable)}, {@link Cache#invalidateAll()}, {@link
    * Map#remove}, {@link ConcurrentMap#remove}, or {@link Iterator#remove}.
    */
-  EXPLICIT {
+  EXPLICIT2 {
     @Override
     boolean wasEvicted() {
       return false;
@@ -88,7 +88,7 @@ public enum RemovalCause {
 
   /**
    * Returns {@code true} if there was an automatic removal due to eviction (the cause is neither
-   * {@link #EXPLICIT} nor {@link #REPLACED}).
+   * {@link #EXPLICIT2} nor {@link #REPLACED}).
    */
   abstract boolean wasEvicted();
 }
