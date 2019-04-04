@@ -2253,7 +2253,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
           removeLoadingValue(key, hash, loadingValueReference);
           return null;
         } else {
-          removeEntry(e, hash, RemovalCause.EXPLICIT);
+          removeEntry(e, hash, RemovalCause.COLLECTED);
           return null;
         }
       } finally {
@@ -3044,7 +3044,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
 
             RemovalCause cause;
             if (entryValue != null) {
-              cause = RemovalCause.EXPLICIT;
+              cause = RemovalCause.COLLECTED;
             } else if (valueReference.isActive()) {
               cause = RemovalCause.COLLECTED;
             } else {
@@ -3090,7 +3090,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
 
             RemovalCause cause;
             if (map.valueEquivalence.equivalent(value, entryValue)) {
-              cause = RemovalCause.EXPLICIT;
+              cause = RemovalCause.COLLECTED;
             } else if (entryValue == null && valueReference.isActive()) {
               cause = RemovalCause.COLLECTED;
             } else {
@@ -3104,7 +3104,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
             newCount = this.count - 1;
             table.set(index, newFirst);
             this.count = newCount; // write-volatile
-            return (cause == RemovalCause.EXPLICIT);
+            return (cause == RemovalCause.COLLECTED);
           }
         }
 
@@ -3190,7 +3190,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
                 K key = e.getKey();
                 V value = e.getValueReference().get();
                 RemovalCause cause =
-                    (key == null || value == null) ? RemovalCause.COLLECTED : RemovalCause.EXPLICIT;
+                    (key == null || value == null) ? RemovalCause.COLLECTED : RemovalCause.COLLECTED;
                 enqueueNotification(
                     key, e.getHash(), value, e.getValueReference().getWeight(), cause);
               }
