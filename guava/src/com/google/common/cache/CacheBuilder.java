@@ -203,7 +203,7 @@ public final class CacheBuilder<K, V> {
     INSTANCE;
 
     @Override
-    public int weigh(Object key, Object value) {
+    public int weigh(Object key, Object value) throws RuntimeException {
       return 1;
     }
   }
