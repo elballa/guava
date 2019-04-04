@@ -37,11 +37,11 @@ public final class RemovalListeners {
    * @param listener the backing listener
    * @param executor the executor with which removal notifications are asynchronously executed
    */
-  public static <K, V> RemovalListener<K, V> asynchronous(
-      final RemovalListener<K, V> listener, final Executor executor) {
+  public static <K, V, H> RemovalListener<K, V, ?> asynchronous(
+      final RemovalListener<K, V, ?> listener, final Executor executor) {
     checkNotNull(listener);
     checkNotNull(executor);
-    return new RemovalListener<K, V>() {
+    return new RemovalListener<K, V, H>() {
       @Override
       public void onRemoval(final RemovalNotification<K, V> notification) {
         executor.execute(

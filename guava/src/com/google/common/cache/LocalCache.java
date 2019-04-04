@@ -215,7 +215,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
    * A listener that is invoked when an entry is removed due to expiration or garbage collection of
    * soft/weak entries.
    */
-  final RemovalListener<K, V> removalListener;
+  final RemovalListener<K, V, ?> removalListener;
 
   /** Measures time in a testable way. */
   final Ticker ticker;
@@ -4689,7 +4689,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     final long maxWeight;
     final Weigher<K, V> weigher;
     final int concurrencyLevel;
-    final RemovalListener<? super K, ? super V> removalListener;
+    final RemovalListener<? super K, ? super V, ?> removalListener;
     @NullableDecl final Ticker ticker;
     final CacheLoader<? super K, V> loader;
 
@@ -4721,7 +4721,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
         long maxWeight,
         Weigher<K, V> weigher,
         int concurrencyLevel,
-        RemovalListener<? super K, ? super V> removalListener,
+        RemovalListener<? super K, ? super V, ?> removalListener,
         Ticker ticker,
         CacheLoader<? super K, V> loader) {
       this.keyStrength = keyStrength;

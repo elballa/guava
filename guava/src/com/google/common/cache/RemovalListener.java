@@ -34,7 +34,7 @@ import com.google.common.annotations.GwtCompatible;
  */
 @GwtCompatible
 @FunctionalInterface
-public interface RemovalListener<K, V> {
+public interface RemovalListener<K, V, H> {
   /**
    * Notifies the listener that a removal occurred at some point in the past.
    *

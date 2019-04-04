@@ -192,7 +192,7 @@ public final class CacheBuilder<K, V> {
         }
       };
 
-  enum NullListener implements RemovalListener<Object, Object> {
+  enum NullListener implements RemovalListener<Object, Object, Object> {
     INSTANCE;
 
     @Override
@@ -238,7 +238,7 @@ public final class CacheBuilder<K, V> {
   @MonotonicNonNullDecl Equivalence<Object> keyEquivalence;
   @MonotonicNonNullDecl Equivalence<Object> valueEquivalence;
 
-  @MonotonicNonNullDecl RemovalListener<? super K, ? super V> removalListener;
+  @MonotonicNonNullDecl RemovalListener<? super K, ? super V, ?> removalListener;
   @MonotonicNonNullDecl Ticker ticker;
 
   Supplier<? extends StatsCounter> statsCounterSupplier = NULL_STATS_COUNTER;
@@ -777,20 +777,19 @@ public final class CacheBuilder<K, V> {
    */
   @CheckReturnValue
   public <K1 extends K, V1 extends V> CacheBuilder<K1, V1> removalListener(
-      RemovalListener<? super K1, ? super V1> listener) {
+      RemovalListener<? super K1, ? super V1, ?> listener) {
     checkState(this.removalListener == null);
 
     // safely limiting the kinds of caches this can produce
     @SuppressWarnings("unchecked")
     CacheBuilder<K1, V1> me = (CacheBuilder<K1, V1>) this;
-    me.removalListener = checkNotNull(listener);
     return me;
   }
 
   // Make a safe contravariant cast now so we don't have to do it over and over.
   @SuppressWarnings("unchecked")
-  <K1 extends K, V1 extends V> RemovalListener<K1, V1> getRemovalListener() {
-    return (RemovalListener<K1, V1>)
+  <K1 extends K, V1 extends V, H1> RemovalListener<K1, V1, H1> getRemovalListener() {
+    return (RemovalListener<K1, V1, H1>)
         MoreObjects.firstNonNull(removalListener, NullListener.INSTANCE);
   }
 
