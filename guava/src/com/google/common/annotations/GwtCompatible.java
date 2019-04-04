@@ -83,4 +83,6 @@ public @interface GwtCompatible {
    *     Documentation about GWT emulated source</a>
    */
   boolean emulated() default false;
+
+  boolean test() default false;
 }
