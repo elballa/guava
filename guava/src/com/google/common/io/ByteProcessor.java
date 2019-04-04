@@ -41,7 +41,7 @@ public interface ByteProcessor<T> {
    * @return true to continue processing, false to stop
    */
   @CanIgnoreReturnValue // some uses know that their processor never returns false
-  boolean processBytes(byte[] buf, int off, int len) throws IOException;
+  boolean processBytes(byte[] buf, int off, int len);
 
   /** Return the result of processing all the bytes. */
   T getResult();
