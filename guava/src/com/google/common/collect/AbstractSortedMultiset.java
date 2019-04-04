@@ -21,6 +21,8 @@ import com.google.j2objc.annotations.WeakOuter;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NavigableSet;
+import java.util.function.ObjIntConsumer;
+
 import org.checkerframework.checker.nullness.compatqual.MonotonicNonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
@@ -141,6 +143,12 @@ abstract class AbstractSortedMultiset<E> extends AbstractMultiset<E> implements 
       public Iterator<E> iterator() {
         return descendingIterator();
       }
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super E> action) {
+		// TODO Auto-generated method stub
+		
+	}
     }
     return new DescendingMultisetImpl();
   }

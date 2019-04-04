@@ -20,6 +20,8 @@ import com.google.common.annotations.GwtCompatible;
 import com.google.common.primitives.Ints;
 import java.util.Collection;
 import java.util.Map;
+import java.util.function.ObjIntConsumer;
+
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
@@ -87,4 +89,10 @@ final class JdkBackedImmutableMultiset<E> extends ImmutableMultiset<E> {
   public int size() {
     return Ints.saturatedCast(size);
   }
+
+@Override
+public void forEachEntry(ObjIntConsumer<? super E> action) {
+	// TODO Auto-generated method stub
+	
+}
 }

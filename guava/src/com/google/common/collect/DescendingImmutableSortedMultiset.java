@@ -15,6 +15,9 @@
 package com.google.common.collect;
 
 import com.google.common.annotations.GwtIncompatible;
+
+import java.util.function.ObjIntConsumer;
+
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
@@ -80,4 +83,10 @@ final class DescendingImmutableSortedMultiset<E> extends ImmutableSortedMultiset
   boolean isPartialView() {
     return forward.isPartialView();
   }
+
+@Override
+public void forEachEntry(ObjIntConsumer<? super E> action) {
+	// TODO Auto-generated method stub
+	
+}
 }

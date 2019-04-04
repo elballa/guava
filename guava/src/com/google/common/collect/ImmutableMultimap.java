@@ -36,6 +36,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Spliterator;
 import java.util.function.BiConsumer;
+import java.util.function.ObjIntConsumer;
+
 import org.checkerframework.checker.nullness.compatqual.MonotonicNonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
@@ -659,6 +661,12 @@ public abstract class ImmutableMultimap<K, V> extends AbstractMultimap<K, V>
     Object writeReplace() {
       return new KeysSerializedForm(ImmutableMultimap.this);
     }
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super K> action) {
+		// TODO Auto-generated method stub
+		
+	}
   }
 
   @GwtIncompatible

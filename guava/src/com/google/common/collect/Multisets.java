@@ -39,6 +39,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.Spliterator;
+import java.util.function.ObjIntConsumer;
 import java.util.stream.Collector;
 import org.checkerframework.checker.nullness.compatqual.MonotonicNonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
@@ -214,6 +215,12 @@ public final class Multisets {
     }
 
     private static final long serialVersionUID = 0;
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super E> action) {
+		// TODO Auto-generated method stub
+		
+	}
   }
 
   /**
@@ -378,6 +385,12 @@ public final class Multisets {
         return contains(element) ? unfiltered.remove(element, occurrences) : 0;
       }
     }
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super E> action) {
+		// TODO Auto-generated method stub
+		
+	}
   }
 
   /**
@@ -461,6 +474,12 @@ public final class Multisets {
           }
         };
       }
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super E> action) {
+		// TODO Auto-generated method stub
+		
+	}
     };
   }
 
@@ -517,6 +536,12 @@ public final class Multisets {
           }
         };
       }
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super E> action) {
+		// TODO Auto-generated method stub
+		
+	}
     };
   }
 
@@ -594,6 +619,12 @@ public final class Multisets {
           }
         };
       }
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super E> action) {
+		// TODO Auto-generated method stub
+		
+	}
     };
   }
 
@@ -669,6 +700,12 @@ public final class Multisets {
       int distinctElements() {
         return Iterators.size(entryIterator());
       }
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super E> action) {
+		// TODO Auto-generated method stub
+		
+	}
     };
   }
 

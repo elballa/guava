@@ -334,10 +334,7 @@ public interface Multiset<E> extends Collection<E> {
    * @since 21.0
    */
   @Beta
-  default void forEachEntry(ObjIntConsumer<? super E> action) {
-    checkNotNull(action);
-    entrySet().forEach(entry -> action.accept(entry.getElement(), entry.getCount()));
-  }
+  abstract void forEachEntry(ObjIntConsumer<? super E> action);
 
   // Comparison and hashing
 

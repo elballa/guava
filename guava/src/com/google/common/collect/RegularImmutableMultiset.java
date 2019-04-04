@@ -24,6 +24,8 @@ import com.google.common.primitives.Ints;
 import com.google.errorprone.annotations.concurrent.LazyInit;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.function.ObjIntConsumer;
+
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
@@ -192,4 +194,10 @@ class RegularImmutableMultiset<E> extends ImmutableMultiset<E> {
   public int hashCode() {
     return hashCode;
   }
+
+@Override
+public void forEachEntry(ObjIntConsumer<? super E> action) {
+	// TODO Auto-generated method stub
+	
+}
 }

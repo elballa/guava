@@ -50,6 +50,7 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.Spliterator;
 import java.util.function.Consumer;
+import java.util.function.ObjIntConsumer;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
 import org.checkerframework.checker.nullness.compatqual.MonotonicNonNullDecl;
@@ -1792,6 +1793,12 @@ public final class Multimaps {
     Iterator<K> elementIterator() {
       throw new AssertionError("should never be called");
     }
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super K> action) {
+		// TODO Auto-generated method stub
+		
+	}
   }
 
   /** A skeleton implementation of {@link Multimap#entries()}. */

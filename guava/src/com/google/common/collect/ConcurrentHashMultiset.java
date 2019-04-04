@@ -41,6 +41,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.ObjIntConsumer;
+
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
@@ -599,4 +601,10 @@ public final class ConcurrentHashMultiset<E> extends AbstractMultiset<E> impleme
   }
 
   private static final long serialVersionUID = 1;
+
+@Override
+public void forEachEntry(ObjIntConsumer<? super E> action) {
+	// TODO Auto-generated method stub
+	
+}
 }

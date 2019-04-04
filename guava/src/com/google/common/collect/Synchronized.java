@@ -45,6 +45,7 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.ObjIntConsumer;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
@@ -563,6 +564,12 @@ final class Synchronized {
     }
 
     private static final long serialVersionUID = 0;
+
+	@Override
+	public void forEachEntry(ObjIntConsumer<? super E> action) {
+		// TODO Auto-generated method stub
+		
+	}
   }
 
   static <K, V> Multimap<K, V> multimap(Multimap<K, V> multimap, @NullableDecl Object mutex) {
