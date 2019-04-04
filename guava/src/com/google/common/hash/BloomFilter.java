@@ -78,14 +78,14 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
      * <p>Returns whether any bits changed as a result of this operation.
      */
     <T> boolean put(
-        T object, Funnel<? super T> funnel, int numHashFunctions, LockFreeBitArray bits);
+        T object, Funnel funnel, int numHashFunctions, LockFreeBitArray bits);
 
     /**
      * Queries {@code numHashFunctions} bits of the given bit array, by hashing a user element;
      * returns {@code true} if and only if all selected bits are set.
      */
     <T> boolean mightContain(
-        T object, Funnel<? super T> funnel, int numHashFunctions, LockFreeBitArray bits);
+        T object, Funnel funnel, int numHashFunctions, LockFreeBitArray bits);
 
     /**
      * Identifier used to encode this strategy, when marshalled as part of a BloomFilter. Only
@@ -104,14 +104,14 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
   private final int numHashFunctions;
 
   /** The funnel to translate Ts to bytes */
-  private final Funnel<? super T> funnel;
+  private final Funnel funnel;
 
   /** The strategy we employ to map an element T to {@code numHashFunctions} bit indexes. */
   private final Strategy strategy;
 
   /** Creates a BloomFilter. */
   private BloomFilter(
-      LockFreeBitArray bits, int numHashFunctions, Funnel<? super T> funnel, Strategy strategy) {
+      LockFreeBitArray bits, int numHashFunctions, Funnel funnel, Strategy strategy) {
     checkArgument(numHashFunctions > 0, "numHashFunctions (%s) must be > 0", numHashFunctions);
     checkArgument(
         numHashFunctions <= 255, "numHashFunctions (%s) must be <= 255", numHashFunctions);
@@ -310,7 +310,7 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
    * @since 23.0
    */
   public static <T> Collector<T, ?, BloomFilter<T>> toBloomFilter(
-      Funnel<? super T> funnel, long expectedInsertions) {
+      Funnel funnel, long expectedInsertions) {
     return toBloomFilter(funnel, expectedInsertions, 0.03);
   }
 
@@ -337,7 +337,7 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
    * @since 23.0
    */
   public static <T> Collector<T, ?, BloomFilter<T>> toBloomFilter(
-      Funnel<? super T> funnel, long expectedInsertions, double fpp) {
+      Funnel funnel, long expectedInsertions, double fpp) {
     checkNotNull(funnel);
     checkArgument(
         expectedInsertions >= 0, "Expected insertions (%s) must be >= 0", expectedInsertions);
@@ -375,7 +375,7 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
    * @return a {@code BloomFilter}
    */
   public static <T> BloomFilter<T> create(
-      Funnel<? super T> funnel, int expectedInsertions, double fpp) {
+      Funnel funnel, int expectedInsertions, double fpp) {
     return create(funnel, (long) expectedInsertions, fpp);
   }
 
@@ -401,13 +401,13 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
    * @since 19.0
    */
   public static <T> BloomFilter<T> create(
-      Funnel<? super T> funnel, long expectedInsertions, double fpp) {
+      Funnel funnel, long expectedInsertions, double fpp) {
     return create(funnel, expectedInsertions, fpp, BloomFilterStrategies.MURMUR128_MITZ_64);
   }
 
   @VisibleForTesting
   static <T> BloomFilter<T> create(
-      Funnel<? super T> funnel, long expectedInsertions, double fpp, Strategy strategy) {
+      Funnel funnel, long expectedInsertions, double fpp, Strategy strategy) {
     checkNotNull(funnel);
     checkArgument(
         expectedInsertions >= 0, "Expected insertions (%s) must be >= 0", expectedInsertions);
@@ -451,7 +451,7 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
    *     BloomFilter}; must be positive
    * @return a {@code BloomFilter}
    */
-  public static <T> BloomFilter<T> create(Funnel<? super T> funnel, int expectedInsertions) {
+  public static <T> BloomFilter<T> create(Funnel funnel, int expectedInsertions) {
     return create(funnel, (long) expectedInsertions);
   }
 
@@ -475,7 +475,7 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
    * @return a {@code BloomFilter}
    * @since 19.0
    */
-  public static <T> BloomFilter<T> create(Funnel<? super T> funnel, long expectedInsertions) {
+  public static <T> BloomFilter<T> create(Funnel funnel, long expectedInsertions) {
     return create(funnel, expectedInsertions, 0.03); // FYI, for 3%, we always get 5 hash functions
   }
 
@@ -531,7 +531,7 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
   private static class SerialForm<T> implements Serializable {
     final long[] data;
     final int numHashFunctions;
-    final Funnel<? super T> funnel;
+    final Funnel funnel;
     final Strategy strategy;
 
     SerialForm(BloomFilter<T> bf) {
@@ -581,7 +581,7 @@ public final class BloomFilter<T> implements Predicate<T>, Serializable {
    * @throws IOException if the InputStream throws an {@code IOException}, or if its data does not
    *     appear to be a BloomFilter serialized using the {@linkplain #writeTo(OutputStream)} method.
    */
-  public static <T> BloomFilter<T> readFrom(InputStream in, Funnel<? super T> funnel)
+  public static <T> BloomFilter<T> readFrom(InputStream in, Funnel funnel)
       throws IOException {
     checkNotNull(in, "InputStream");
     checkNotNull(funnel, "Funnel");

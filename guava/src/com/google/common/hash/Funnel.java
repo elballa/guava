@@ -41,7 +41,7 @@ import java.io.Serializable;
  * @since 11.0
  */
 @Beta
-public interface Funnel<T> extends Serializable {
+public interface Funnel extends Serializable {
 
   /**
    * Sends a stream of data from the {@code from} object into the sink {@code into}. There is no
@@ -49,5 +49,5 @@ public interface Funnel<T> extends Serializable {
    *
    * @since 12.0 (in Guava 11.0, {@code PrimitiveSink} was named {@code Sink})
    */
-  void funnel(T from, PrimitiveSink into);
+  void funnel(Object from, PrimitiveSink into);
 }

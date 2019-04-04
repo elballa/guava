@@ -213,7 +213,7 @@ public interface HashFunction {
    *
    * @since 14.0
    */
-  <T> HashCode hashObject(T instance, Funnel<? super T> funnel);
+  <T> HashCode hashObject(T instance, Funnel funnel);
 
   /**
    * Returns the number of bits (a multiple of 32) that each hash code produced by this hash

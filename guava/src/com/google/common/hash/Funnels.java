@@ -32,15 +32,14 @@ public final class Funnels {
   private Funnels() {}
 
   /** Returns a funnel that extracts the bytes from a {@code byte} array. */
-  public static Funnel<byte[]> byteArrayFunnel() {
+  public static Funnel byteArrayFunnel() {
     return ByteArrayFunnel.INSTANCE;
   }
 
-  private enum ByteArrayFunnel implements Funnel<byte[]> {
+  private enum ByteArrayFunnel implements Funnel {
     INSTANCE;
 
-    public void funnel(byte[] from, PrimitiveSink into) {
-      into.putBytes(from);
+    public void funnel(Object from, PrimitiveSink into) {
     }
 
     @Override
@@ -56,15 +55,14 @@ public final class Funnels {
    *
    * @since 15.0 (since 11.0 as {@code Funnels.stringFunnel()}.
    */
-  public static Funnel<CharSequence> unencodedCharsFunnel() {
+  public static Funnel unencodedCharsFunnel() {
     return UnencodedCharsFunnel.INSTANCE;
   }
 
-  private enum UnencodedCharsFunnel implements Funnel<CharSequence> {
+  private enum UnencodedCharsFunnel implements Funnel {
     INSTANCE;
 
-    public void funnel(CharSequence from, PrimitiveSink into) {
-      into.putUnencodedChars(from);
+    public void funnel(Object from, PrimitiveSink into) {
     }
 
     @Override
@@ -79,19 +77,18 @@ public final class Funnels {
    *
    * @since 15.0
    */
-  public static Funnel<CharSequence> stringFunnel(Charset charset) {
+  public static Funnel stringFunnel(Charset charset) {
     return new StringCharsetFunnel(charset);
   }
 
-  private static class StringCharsetFunnel implements Funnel<CharSequence>, Serializable {
+  private static class StringCharsetFunnel implements Funnel, Serializable {
     private final Charset charset;
 
     StringCharsetFunnel(Charset charset) {
       this.charset = Preconditions.checkNotNull(charset);
     }
 
-    public void funnel(CharSequence from, PrimitiveSink into) {
-      into.putString(from, charset);
+    public void funnel(Object from, PrimitiveSink into) {
     }
 
     @Override
@@ -137,15 +134,14 @@ public final class Funnels {
    *
    * @since 13.0
    */
-  public static Funnel<Integer> integerFunnel() {
+  public static Funnel integerFunnel() {
     return IntegerFunnel.INSTANCE;
   }
 
-  private enum IntegerFunnel implements Funnel<Integer> {
+  private enum IntegerFunnel implements Funnel {
     INSTANCE;
 
-    public void funnel(Integer from, PrimitiveSink into) {
-      into.putInt(from);
+    public void funnel(Object from, PrimitiveSink into) {
     }
 
     @Override
@@ -160,21 +156,18 @@ public final class Funnels {
    *
    * @since 15.0
    */
-  public static <E> Funnel<Iterable<? extends E>> sequentialFunnel(Funnel<E> elementFunnel) {
+  public static <E> Funnel sequentialFunnel(Funnel elementFunnel) {
     return new SequentialFunnel<E>(elementFunnel);
   }
 
-  private static class SequentialFunnel<E> implements Funnel<Iterable<? extends E>>, Serializable {
-    private final Funnel<E> elementFunnel;
+  private static class SequentialFunnel<E> implements Funnel, Serializable {
+    private final Funnel elementFunnel;
 
-    SequentialFunnel(Funnel<E> elementFunnel) {
+    SequentialFunnel(Funnel elementFunnel) {
       this.elementFunnel = Preconditions.checkNotNull(elementFunnel);
     }
 
-    public void funnel(Iterable<? extends E> from, PrimitiveSink into) {
-      for (E e : from) {
-        elementFunnel.funnel(e, into);
-      }
+    public void funnel(Object from, PrimitiveSink into) {
     }
 
     @Override
@@ -202,15 +195,14 @@ public final class Funnels {
    *
    * @since 13.0
    */
-  public static Funnel<Long> longFunnel() {
+  public static Funnel longFunnel() {
     return LongFunnel.INSTANCE;
   }
 
-  private enum LongFunnel implements Funnel<Long> {
+  private enum LongFunnel implements Funnel {
     INSTANCE;
 
-    public void funnel(Long from, PrimitiveSink into) {
-      into.putLong(from);
+    public void funnel(Object from, PrimitiveSink into) {
     }
 
     @Override

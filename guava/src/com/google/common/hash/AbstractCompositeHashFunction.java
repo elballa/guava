@@ -177,7 +177,7 @@ abstract class AbstractCompositeHashFunction extends AbstractHashFunction {
       }
 
       @Override
-      public <T> Hasher putObject(T instance, Funnel<? super T> funnel) {
+      public <T> Hasher putObject(T instance, Funnel funnel) {
         for (Hasher hasher : hashers) {
           hasher.putObject(instance, funnel);
         }

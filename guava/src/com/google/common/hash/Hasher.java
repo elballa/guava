@@ -119,7 +119,7 @@ public interface Hasher extends PrimitiveSink {
   Hasher putString(CharSequence charSequence, Charset charset);
 
   /** A simple convenience for {@code funnel.funnel(object, this)}. */
-  <T> Hasher putObject(T instance, Funnel<? super T> funnel);
+  <T> Hasher putObject(T instance, Funnel funnel);
 
   /**
    * Computes a hash code based on the data that have been provided to this hasher. The result is
