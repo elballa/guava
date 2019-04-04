@@ -180,10 +180,10 @@ public class EventBus {
   /**
    * Registers all subscriber methods on {@code object} to receive events.
    *
-   * @param object object whose subscriber methods should be registered.
+   * @param object2 object whose subscriber methods should be registered.
    */
-  public void register(Object object) {
-    subscribers.register(object);
+  public void register(Object object2) {
+    subscribers.register(object2);
   }
 
   /**
