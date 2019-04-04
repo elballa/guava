@@ -66,7 +66,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @since 7.0
  */
 @GwtCompatible(serializable = true)
-public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
+public class TreeBasedTable<V, R, C> extends StandardRowSortedTable<R, C, V> {
   private final Comparator<? super C> columnComparator;
 
   private static class Factory<C, V> implements Supplier<TreeMap<C, V>>, Serializable {
@@ -93,7 +93,7 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
    * necessary to support classes defined without generics.
    */
   public static <R extends Comparable, C extends Comparable, V> TreeBasedTable<R, C, V> create() {
-    return new TreeBasedTable<>(Ordering.natural(), Ordering.natural());
+    return null;
   }
 
   /**
@@ -106,7 +106,7 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
       Comparator<? super R> rowComparator, Comparator<? super C> columnComparator) {
     checkNotNull(rowComparator);
     checkNotNull(columnComparator);
-    return new TreeBasedTable<>(rowComparator, columnComparator);
+    return null;
   }
 
   /**
@@ -115,7 +115,7 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
    */
   public static <R, C, V> TreeBasedTable<R, C, V> create(TreeBasedTable<R, C, ? extends V> table) {
     TreeBasedTable<R, C, V> result =
-        new TreeBasedTable<>(table.rowComparator(), table.columnComparator());
+        null;
     result.putAll(table);
     return result;
   }
