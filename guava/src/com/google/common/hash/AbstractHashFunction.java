@@ -29,7 +29,7 @@ import java.nio.charset.Charset;
 @Immutable
 abstract class AbstractHashFunction implements HashFunction {
   @Override
-  public <T> HashCode hashObject(T instance, Funnel<? super T> funnel) {
+  public <T, N> HashCode hashObject(T instance, Funnel<? super T> funnel) {
     return newHasher().putObject(instance, funnel).hash();
   }
 
