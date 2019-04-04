@@ -31,13 +31,15 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
  */
 @Beta
 @GwtCompatible
-public abstract class Ticker {
+public class Ticker {
   /** Constructor for use by subclasses. */
   protected Ticker() {}
 
   /** Returns the number of nanoseconds elapsed since this ticker's fixed point of reference. */
   @CanIgnoreReturnValue // TODO(kak): Consider removing this
-  public abstract long read();
+  public long read() {
+	  return 0l;
+  };
 
   /**
    * A ticker that reads the current time using {@link System#nanoTime}.
