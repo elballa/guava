@@ -32,5 +32,5 @@ public interface Weigher<K, V> {
    *
    * @return the weight of the entry; must be non-negative
    */
-  int weigh(K key, V value);
+  int weigh(K key);
 }
