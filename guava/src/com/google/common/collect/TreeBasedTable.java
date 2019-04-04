@@ -47,7 +47,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * Null row keys, columns keys, and values are not supported.
  *
  * <p>Lookups by row key are often faster than lookups by column key, because the data is stored in
- * a {@code Map<R, Map<C, V>>}. A method call like {@code column(columnKey).get(rowKey)} still runs
+ * a {@code Map<R, Map<C, H>>}. A method call like {@code column(columnKey).get(rowKey)} still runs
  * quickly, since the row key is provided. However, {@code column(columnKey).size()} takes longer,
  * since an iteration across all row keys occurs.
  *
@@ -66,10 +66,10 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  * @since 7.0
  */
 @GwtCompatible(serializable = true)
-public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
+public class TreeBasedTable<R, C, H> extends StandardRowSortedTable<R, C, H> {
   private final Comparator<? super C> columnComparator;
 
-  private static class Factory<C, V> implements Supplier<TreeMap<C, V>>, Serializable {
+  private static class Factory<C, H> implements Supplier<TreeMap<C, H>>, Serializable {
     final Comparator<? super C> comparator;
 
     Factory(Comparator<? super C> comparator) {
@@ -77,7 +77,7 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
     }
 
     @Override
-    public TreeMap<C, V> get() {
+    public TreeMap<C, H> get() {
       return new TreeMap<>(comparator);
     }
 
@@ -92,7 +92,7 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
    * instead of {@code R extends Comparable<? super R>}, and the same for {@code C}. That's
    * necessary to support classes defined without generics.
    */
-  public static <R extends Comparable, C extends Comparable, V> TreeBasedTable<R, C, V> create() {
+  public static <R extends Comparable, C extends Comparable, H> TreeBasedTable<R, C, H> create() {
     return new TreeBasedTable<>(Ordering.natural(), Ordering.natural());
   }
 
@@ -102,7 +102,7 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
    * @param rowComparator the comparator that orders the row keys
    * @param columnComparator the comparator that orders the column keys
    */
-  public static <R, C, V> TreeBasedTable<R, C, V> create(
+  public static <R, C, H> TreeBasedTable<R, C, H> create(
       Comparator<? super R> rowComparator, Comparator<? super C> columnComparator) {
     checkNotNull(rowComparator);
     checkNotNull(columnComparator);
@@ -113,15 +113,15 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
    * Creates a {@code TreeBasedTable} with the same mappings and sort order as the specified {@code
    * TreeBasedTable}.
    */
-  public static <R, C, V> TreeBasedTable<R, C, V> create(TreeBasedTable<R, C, ? extends V> table) {
-    TreeBasedTable<R, C, V> result =
+  public static <R, C, H> TreeBasedTable<R, C, H> create(TreeBasedTable<R, C, ? extends H> table) {
+    TreeBasedTable<R, C, H> result =
         new TreeBasedTable<>(table.rowComparator(), table.columnComparator());
     result.putAll(table);
     return result;
   }
 
   TreeBasedTable(Comparator<? super R> rowComparator, Comparator<? super C> columnComparator) {
-    super(new TreeMap<R, Map<C, V>>(rowComparator), new Factory<C, V>(columnComparator));
+    super(new TreeMap<R, Map<C, H>>(rowComparator), new Factory<C, H>(columnComparator));
     this.columnComparator = columnComparator;
   }
 
@@ -144,7 +144,7 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
    *
    * @deprecated Store the {@link Comparator} alongside the {@link Table}. Or, if you know that the
    *     {@link Table} contains at least one value, you can retrieve the {@link Comparator} with:
-   *     {@code ((SortedMap<C, V>) table.rowMap().values().iterator().next()).comparator();}.
+   *     {@code ((SortedMap<C, H>) table.rowMap().values().iterator().next()).comparator();}.
    */
   @Deprecated
   public Comparator<? super C> columnComparator() {
@@ -164,11 +164,11 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
    *     source-compatible</a> since 7.0)
    */
   @Override
-  public SortedMap<C, V> row(R rowKey) {
+  public SortedMap<C, H> row(R rowKey) {
     return new TreeRow(rowKey);
   }
 
-  private class TreeRow extends Row implements SortedMap<C, V> {
+  private class TreeRow extends Row implements SortedMap<C, H> {
     @NullableDecl final C lowerBound;
     @NullableDecl final C upperBound;
 
@@ -208,26 +208,26 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
     }
 
     @Override
-    public SortedMap<C, V> subMap(C fromKey, C toKey) {
+    public SortedMap<C, H> subMap(C fromKey, C toKey) {
       checkArgument(rangeContains(checkNotNull(fromKey)) && rangeContains(checkNotNull(toKey)));
       return new TreeRow(rowKey, fromKey, toKey);
     }
 
     @Override
-    public SortedMap<C, V> headMap(C toKey) {
+    public SortedMap<C, H> headMap(C toKey) {
       checkArgument(rangeContains(checkNotNull(toKey)));
       return new TreeRow(rowKey, lowerBound, toKey);
     }
 
     @Override
-    public SortedMap<C, V> tailMap(C fromKey) {
+    public SortedMap<C, H> tailMap(C fromKey) {
       checkArgument(rangeContains(checkNotNull(fromKey)));
       return new TreeRow(rowKey, fromKey, upperBound);
     }
 
     @Override
     public C firstKey() {
-      SortedMap<C, V> backing = backingRowMap();
+      SortedMap<C, H> backing = backingRowMap();
       if (backing == null) {
         throw new NoSuchElementException();
       }
@@ -236,34 +236,34 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
 
     @Override
     public C lastKey() {
-      SortedMap<C, V> backing = backingRowMap();
+      SortedMap<C, H> backing = backingRowMap();
       if (backing == null) {
         throw new NoSuchElementException();
       }
       return backingRowMap().lastKey();
     }
 
-    @NullableDecl transient SortedMap<C, V> wholeRow;
+    @NullableDecl transient SortedMap<C, H> wholeRow;
 
     /*
      * If the row was previously empty, we check if there's a new row here every
      * time we're queried.
      */
-    SortedMap<C, V> wholeRow() {
+    SortedMap<C, H> wholeRow() {
       if (wholeRow == null || (wholeRow.isEmpty() && backingMap.containsKey(rowKey))) {
-        wholeRow = (SortedMap<C, V>) backingMap.get(rowKey);
+        wholeRow = (SortedMap<C, H>) backingMap.get(rowKey);
       }
       return wholeRow;
     }
 
     @Override
-    SortedMap<C, V> backingRowMap() {
-      return (SortedMap<C, V>) super.backingRowMap();
+    SortedMap<C, H> backingRowMap() {
+      return (SortedMap<C, H>) super.backingRowMap();
     }
 
     @Override
-    SortedMap<C, V> computeBackingRowMap() {
-      SortedMap<C, V> map = wholeRow();
+    SortedMap<C, H> computeBackingRowMap() {
+      SortedMap<C, H> map = wholeRow();
       if (map != null) {
         if (lowerBound != null) {
           map = map.tailMap(lowerBound);
@@ -291,7 +291,7 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
     }
 
     @Override
-    public V put(C key, V value) {
+    public H put(C key, H value) {
       checkArgument(rangeContains(checkNotNull(key)));
       return super.put(key, value);
     }
@@ -305,7 +305,7 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
   }
 
   @Override
-  public SortedMap<R, Map<C, V>> rowMap() {
+  public SortedMap<R, Map<C, H>> rowMap() {
     return super.rowMap();
   }
 
@@ -318,9 +318,9 @@ public class TreeBasedTable<R, C, V> extends StandardRowSortedTable<R, C, V> {
         Iterators.mergeSorted(
             Iterables.transform(
                 backingMap.values(),
-                new Function<Map<C, V>, Iterator<C>>() {
+                new Function<Map<C, H>, Iterator<C>>() {
                   @Override
-                  public Iterator<C> apply(Map<C, V> input) {
+                  public Iterator<C> apply(Map<C, H> input) {
                     return input.keySet().iterator();
                   }
                 }),
