@@ -2008,7 +2008,13 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     @GuardedBy("this")
     void setValue(ReferenceEntry<K, V> entry, K key, V value, long now) {
       ValueReference<K, V> previous = entry.getValueReference();
-      int weight = map.weigher.weigh(key, value);
+      int weight = 0;
+	try {
+		weight = map.weigher.weigh(key, value);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
       checkState(weight >= 0, "Weights must be non-negative");
 
       ValueReference<K, V> valueReference =
