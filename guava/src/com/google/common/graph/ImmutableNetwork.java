@@ -69,8 +69,8 @@ public final class ImmutableNetwork<N, E> extends ConfigurableNetwork<N, E> {
   }
 
   @Override
-  public ImmutableGraph<N> asGraph() {
-    return new ImmutableGraph<N>(super.asGraph()); // safe because the view is effectively immutable
+  public ImmutableGraph asGraph() {
+    return new ImmutableGraph(super.asGraph()); // safe because the view is effectively immutable
   }
 
   private static <N, E> Map<N, NetworkConnections<N, E>> getNodeConnections(Network<N, E> network) {
