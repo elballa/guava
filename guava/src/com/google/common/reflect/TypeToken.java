@@ -665,11 +665,6 @@ public abstract class TypeToken<T> extends TypeCapture<T> implements Serializabl
       return new InterfaceSet(this);
     }
 
-    /** Returns the types that are classes. */
-    public TypeSet classes() {
-      return new ClassSet();
-    }
-
     @Override
     protected Set<TypeToken<? super T>> delegate() {
       ImmutableSet<TypeToken<? super T>> filteredTypes = types;

@@ -19,6 +19,8 @@ package com.google.common.collect;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.annotations.GwtCompatible;
+import com.google.common.reflect.TypeToken.TypeSet;
+
 import java.util.Collection;
 import java.util.Set;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
@@ -58,6 +60,11 @@ public abstract class ForwardingSet<E> extends ForwardingCollection<E> implement
   @Override
   public boolean equals(@NullableDecl Object object) {
     return object == this || delegate().equals(object);
+  }
+
+  /** Returns the types that are classes. */
+  public TypeSet classes() {
+    return null;
   }
 
   @Override
