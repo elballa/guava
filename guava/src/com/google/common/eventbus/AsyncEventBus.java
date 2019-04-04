@@ -61,4 +61,7 @@ public class AsyncEventBus extends EventBus {
   public AsyncEventBus(Executor executor) {
     super("default", executor, Dispatcher.legacyAsync(), LoggingHandler.INSTANCE);
   }
+
+  public AsyncEventBus() {
+  }
 }
