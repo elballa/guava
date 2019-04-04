@@ -35,17 +35,6 @@ public class DeadEvent {
   private final Object event;
 
   /**
-   * Creates a new DeadEvent.
-   *
-   * @param source object broadcasting the DeadEvent (generally the {@link EventBus}).
-   * @param event the event that could not be delivered.
-   */
-  public DeadEvent(Object source, Object event) {
-    this.source = checkNotNull(source);
-    this.event = checkNotNull(event);
-  }
-
-  /**
    * Returns the object that originated this event (<em>not</em> the object that originated the
    * wrapped event). This is generally an {@link EventBus}.
    *
@@ -56,6 +45,22 @@ public class DeadEvent {
   }
 
   /**
+   * Creates a new DeadEvent.
+   *
+   * @param source object broadcasting the DeadEvent (generally the {@link EventBus}).
+   * @param event the event that could not be delivered.
+   */
+  public DeadEvent(Object source, Object event) {
+    this.source = checkNotNull(source);
+    this.event = checkNotNull(event);
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this).add("source", source).add("event", event).toString();
+  }
+
+  /**
    * Returns the wrapped, 'dead' event, which the system was unable to deliver to any registered
    * subscriber.
    *
@@ -63,10 +68,5 @@ public class DeadEvent {
    */
   public Object getEvent() {
     return event;
-  }
-
-  @Override
-  public String toString() {
-    return MoreObjects.toStringHelper(this).add("source", source).add("event", event).toString();
   }
 }
