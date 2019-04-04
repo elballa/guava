@@ -193,7 +193,7 @@ public class FinalizableReferenceQueue implements Closeable {
        */
       reference.clear();
       try {
-        ((FinalizableReference) reference).finalizeReferent();
+        ((FinalizableReference) reference).finalizeReferent(true);
       } catch (Throwable t) {
         logger.log(Level.SEVERE, "Error cleaning up after reference.", t);
       }

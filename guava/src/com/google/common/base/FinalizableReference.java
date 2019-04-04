@@ -30,5 +30,5 @@ public interface FinalizableReference {
    * restrictions prevented starting a background thread, in which case this method is invoked when
    * new references are created.
    */
-  void finalizeReferent();
+  void finalizeReferent(boolean test);
 }
