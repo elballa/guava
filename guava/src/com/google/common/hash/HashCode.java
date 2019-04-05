@@ -83,12 +83,7 @@ public abstract class HashCode {
    * @throws IndexOutOfBoundsException if there is not enough room in {@code dest}
    */
   @CanIgnoreReturnValue
-  public int writeBytesTo(byte[] dest, int offset, int maxLength) {
-    maxLength = Ints.min(maxLength, bits() / 8);
-    Preconditions.checkPositionIndexes(offset, offset + maxLength, dest.length);
-    writeBytesToImpl(dest, offset, maxLength);
-    return maxLength;
-  }
+  public abstract int writeBytesTo(byte[] dest, int offset, int maxLength);
 
   abstract void writeBytesToImpl(byte[] dest, int offset, int maxLength);
 
@@ -162,6 +157,12 @@ public abstract class HashCode {
     }
 
     private static final long serialVersionUID = 0;
+
+	@Override
+	public int writeBytesTo(byte[] dest, int offset, int maxLength) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   }
 
   /**
@@ -228,6 +229,12 @@ public abstract class HashCode {
     }
 
     private static final long serialVersionUID = 0;
+
+	@Override
+	public int writeBytesTo(byte[] dest, int offset, int maxLength) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   }
 
   /**
@@ -322,6 +329,12 @@ public abstract class HashCode {
     }
 
     private static final long serialVersionUID = 0;
+
+	@Override
+	public int writeBytesTo(byte[] dest, int offset, int maxLength) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   }
 
   /**
