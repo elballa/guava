@@ -480,7 +480,7 @@ public abstract class AbstractFuture<V> extends FluentFuture<V> {
    */
   @CanIgnoreReturnValue
   @Override
-  public V get() throws InterruptedException, ExecutionException {
+  public V get() throws ExecutionException, InterruptedException {
     if (Thread.interrupted()) {
       throw new InterruptedException();
     }
