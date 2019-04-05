@@ -89,7 +89,7 @@ public class Joiner {
    * separator between each, to {@code appendable}.
    */
   @CanIgnoreReturnValue
-  public <A extends Appendable> A appendTo(A appendable, Iterable<?> parts) throws IOException {
+  public <A2 extends Appendable> A2 appendTo(A2 appendable, Iterable<?> parts) throws IOException {
     return appendTo(appendable, parts.iterator());
   }
 
