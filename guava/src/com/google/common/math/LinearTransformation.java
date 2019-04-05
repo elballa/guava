@@ -127,7 +127,9 @@ public abstract class LinearTransformation {
   }
 
   /** Returns whether this is a vertical transformation. */
-  public abstract boolean isVertical();
+  public boolean isVertical() {
+	  return true;
+  }
 
   /** Returns whether this is a horizontal transformation. */
   public abstract boolean isHorizontal();
