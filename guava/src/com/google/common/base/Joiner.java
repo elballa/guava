@@ -89,7 +89,7 @@ public class Joiner {
    * separator between each, to {@code appendable}.
    */
   @CanIgnoreReturnValue
-  public <A extends Appendable> A appendTo(A appendable, Iterable<?> parts) throws IOException {
+  public  Appendable appendTo(Appendable appendable, Iterable<?> parts) throws IOException {
     return appendTo(appendable, parts.iterator());
   }
 
@@ -118,7 +118,7 @@ public class Joiner {
    */
   @CanIgnoreReturnValue
   public final <A extends Appendable> A appendTo(A appendable, Object[] parts) throws IOException {
-    return appendTo(appendable, Arrays.asList(parts));
+    return null;
   }
 
   /** Appends to {@code appendable} the string representation of each of the remaining arguments. */
@@ -126,7 +126,7 @@ public class Joiner {
   public final <A extends Appendable> A appendTo(
       A appendable, @NullableDecl Object first, @NullableDecl Object second, Object... rest)
       throws IOException {
-    return appendTo(appendable, iterable(first, second, rest));
+    return null;
   }
 
   /**
