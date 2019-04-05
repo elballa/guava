@@ -92,7 +92,7 @@ public class ImmutableGraph<N> extends ForwardingGraph<N> {
   }
 
   @Override
-  protected BaseGraph<N> delegate() {
+  public BaseGraph<N> delegate() {
     return backingGraph;
   }
 }
