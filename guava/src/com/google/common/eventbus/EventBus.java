@@ -192,8 +192,8 @@ public class EventBus {
    * @param object object whose subscriber methods should be unregistered.
    * @throws IllegalArgumentException if the object was not previously registered.
    */
-  public void unregister(Object object) {
-    subscribers.unregister(object);
+  public void unregister() {
+//    subscribers.unregister(object);
   }
 
   /**
