@@ -41,8 +41,8 @@ public abstract class ForwardingLoadingCache<K, V> extends ForwardingCache<K, V>
   protected abstract LoadingCache<K, V> delegate();
 
   @Override
-  public V get(K key) throws ExecutionException {
-    return delegate().get(key);
+  public V get(K key) {
+    return null;
   }
 
   @Override
