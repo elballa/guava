@@ -27,14 +27,6 @@ import java.util.concurrent.ConcurrentMap;
  */
 @GwtCompatible
 public enum RemovalCause {
-	
-	NONE {
-		@Override
-		boolean wasEvicted() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-	}, 
   /**
    * The entry was manually removed by the user. This can result from the user invoking {@link
    * Cache#invalidate}, {@link Cache#invalidateAll(Iterable)}, {@link Cache#invalidateAll()}, {@link
@@ -92,7 +84,15 @@ public enum RemovalCause {
     boolean wasEvicted() {
       return true;
     }
-  };
+  },
+	
+	NONE {
+		@Override
+		boolean wasEvicted() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+	};
 
   /**
    * Returns {@code true} if there was an automatic removal due to eviction (the cause is neither
