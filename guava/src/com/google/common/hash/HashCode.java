@@ -83,11 +83,11 @@ public abstract class HashCode {
    * @throws IndexOutOfBoundsException if there is not enough room in {@code dest}
    */
   @CanIgnoreReturnValue
-  public int writeBytesTo(byte[] dest, int offset, int maxLength) {
-    maxLength = Ints.min(maxLength, bits() / 8);
-    Preconditions.checkPositionIndexes(offset, offset + maxLength, dest.length);
-    writeBytesToImpl(dest, offset, maxLength);
-    return maxLength;
+  public static int writeBytesTo(byte[] dest, int offset, int maxLength) {
+//    maxLength = Ints.min(maxLength, bits() / 8);
+//    Preconditions.checkPositionIndexes(offset, offset + maxLength, dest.length);
+//    writeBytesToImpl(dest, offset, maxLength);
+    return 0;
   }
 
   abstract void writeBytesToImpl(byte[] dest, int offset, int maxLength);
