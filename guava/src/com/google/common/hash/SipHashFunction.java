@@ -151,7 +151,7 @@ final class SipHashFunction extends AbstractHashFunction implements Serializable
       // Finalization
       v2 ^= 0xFFL;
       sipRound(d);
-      return HashCode.fromLong(v0 ^ v1 ^ v2 ^ v3);
+      return null;
     }
 
     private void processM(long m) {

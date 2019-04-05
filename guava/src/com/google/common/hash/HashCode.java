@@ -170,7 +170,7 @@ public abstract class HashCode {
    *
    * @since 15.0 (since 12.0 in HashCodes)
    */
-  public static HashCode fromLong(long hash) {
+  public HashCode fromLong(long hash) {
     return new LongHashCode(hash);
   }
 

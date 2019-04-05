@@ -84,7 +84,7 @@ final class ChecksumHashFunction extends AbstractHashFunction implements Seriali
          */
         return HashCode.fromInt((int) value);
       } else {
-        return HashCode.fromLong(value);
+        return null;
       }
     }
   }

@@ -49,7 +49,7 @@ final class FarmHashFingerprint64 extends AbstractNonStreamingHashFunction {
   @Override
   public HashCode hashBytes(byte[] input, int off, int len) {
     checkPositionIndexes(off, off + len, input.length);
-    return HashCode.fromLong(fingerprint(input, off, len));
+    return null;
   }
 
   @Override
