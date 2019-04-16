@@ -23,7 +23,7 @@
     <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
     <maven-bnd-plugin.version>4.2.0</maven-bnd-plugin.version>
     <maven-revapi-plugin.version>0.11.0</maven-revapi-plugin.version>
-    <maven-japicmp-plugin.version>0.13.1</maven-japicmp-plugin.version>
+    <maven-japicmp-plugin.version>0.14.1-SNAPSHOT</maven-japicmp-plugin.version>
     <revapi.version>0.19.0</revapi.version>
   </properties>
   <issueManagement>
@@ -276,6 +276,15 @@
                     <breakBuildOnModifications>false</breakBuildOnModifications>
                     <breakBuildBasedOnSemanticVersioning>true</breakBuildBasedOnSemanticVersioning>
                     <onlyModified>true</onlyModified>
+                    <postAnalysisScript>${project.basedir}/src/postAnalysisScript.groovy</postAnalysisScript>
+                    <overrideCompatibilityChangeParameters>
+                        <overrideCompatibilityChangeParameter>
+                            <compatibilityChange>METHOD_ADDED_TO_INTERFACE</compatibilityChange>
+                            <binaryCompatible>false</binaryCompatible>
+                            <sourceCompatible>false</sourceCompatible>
+                            <semanticVersionLevel>MAJOR</semanticVersionLevel>
+                        </overrideCompatibilityChangeParameter>
+                    </overrideCompatibilityChangeParameters>
                 </parameter>
             </configuration>
         </plugin>

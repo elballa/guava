@@ -23,6 +23,7 @@ import com.google.common.annotations.GwtIncompatible;
  * @author Bob Lee
  * @since 2.0
  */
+@MyProviderType
 @GwtIncompatible
 public interface FinalizableReference {
   /**
@@ -33,4 +34,6 @@ public interface FinalizableReference {
   void finalizeReferent();
   
   public abstract void test();
+  
+  public abstract void test2();
 }
